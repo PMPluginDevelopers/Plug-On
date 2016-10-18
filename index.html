@@ -1,0 +1,42 @@
+<link rel="import" href="../core-menu/core-submenu.html">
+<link rel="import" href="../core-item/core-item.html">
+
+<polymer-element name="my-element">
+
+  <template>
+    <style>
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_menu {
+        font-size: 16px;
+        left: 20px;
+        top: 10px;
+        position: absolute;
+      }
+    </style>
+    <core-menu selected="0" selectedindex="0" id="core_menu">
+      <core-submenu opened active id="core_submenu" icon="settings" label="Plugins">
+        <core-item id="core_item" label="Authors" horizontal center layout></core-item>
+        <core-item id="core_item1" label="Top Plugins" horizontal center layout></core-item>
+      </core-submenu>
+      <core-submenu id="core_submenu1" icon="settings" label="Categories">
+        <core-item id="core_item2" label="World Management" horizontal center layout></core-item>
+        <core-item id="core_item3" label="Fun" horizontal center layout></core-item>
+        <core-item id="core_item4" label="Mechanics" horizontal center layout></core-item>
+      </core-submenu>
+    </core-menu>
+  </template>
+
+  <script>
+
+    Polymer({
+      
+    });
+
+  </script>
+
+</p
