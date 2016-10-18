@@ -9,9 +9,13 @@
 <h1>Post Your Pocketmine Plugin</h1>
 <h2>Choose file</h2>
 <p>This website is still under construction, please check back later, or follow our progress on Github: https://github.com/PMPluginDevelopers/PocketMine-Plugins-List</p
-<form action="plugin_upload.asp">
-  <input type="file" name="Phar" accept="phar/*">
-  <input type="submit">
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Plugin" name="submit">
 </form>
+
+</body>
+</html>
 </body>
 </html>
