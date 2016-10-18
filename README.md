@@ -1,4 +1,4 @@
-<img src="http://de7.engine.flamingtext.com/netfu/tmp28007/coollogo_com-316991055.png" alt="Image by FlamingText.com"/>
+<img src="https://github.com/PMPluginDevelopers/PocketMine-Plugins-List/blob/master/Plug-On_logo.png?raw=true" alt="Image by FlamingText.com"/>
 
 Development for creating a website for sharing PocketMine-MP plugins.
 
