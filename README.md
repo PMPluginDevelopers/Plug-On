@@ -1,5 +1,6 @@
 <img src="https://github.com/PMPluginDevelopers/PocketMine-Plugins-List/blob/master/Plug-On_logo.png?raw=true" alt="Image by FlamingText.com"/>
-
+Under Development
+<img src="https://github.com/PMPluginDevelopers/Plug-On/blob/master/Plug-On_Devs_logo.gif?raw=true" alt="Plug-On_Devs_logo.gif"/>
 Development for creating a website for sharing PocketMine-MP plugins.
 
 Designed to replace the 'Plugins' page at https://pocketmine.net
