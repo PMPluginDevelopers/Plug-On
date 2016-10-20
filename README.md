@@ -16,6 +16,12 @@ Plug-On is a dynamic plugin list for Pocketmine-MP. It has a login system, as we
 
 This project is still being developed, you can check our To-Do list in the 'Issues' section to stay updated as we approach the 1.0.0 release. 
 
+# How You Can Help!
+
+Want to help make Plug-On better for all? We are looking for developers well versed in PHP or HTML (or both!) to help develop our website software. 
+
+Not a Programmer? You can help as well! By Downloading this repository, extracting it into a folder, and opening up the index.html file, you can help us bug test! Please don't post duplicate Issues.
+
 # General Information
 
 Gitter:
