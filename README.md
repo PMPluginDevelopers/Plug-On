@@ -1,4 +1,4 @@
-<img src="https://github.com/PMPluginDevelopers/PocketMine-Plugins-List/blob/master/Plug-On_logo.png?raw=true" alt="Image by FlamingText.com"/>
+<img src="https://github.com/PMPluginDevelopers/PocketMine-Plugins-List/blob/master/Plug-On_logo.png?raw=true" alt="Plug-On"/>
 
 
 
@@ -14,7 +14,10 @@ https://gitter.im/Plug-On/Lobby?utm_source=share-link&utm_medium=link&utm_campai
 
 Founders:
 
+
+<img src="https://avatars0.githubusercontent.com/u/13737682?v=3&s=88"/>
 @Edwardthedog2
+
 
 Github:
 
@@ -24,7 +27,12 @@ Pocketmine:
 
 https://forums.pocketmine.net/members/edwardallington.21838/
 
+
+
+
+<img src="https://avatars2.githubusercontent.com/u/21282327?v=3&s=88"/>
 @Magicode1
+
 
 Github:
 
@@ -34,7 +42,12 @@ Pocketmine:
 
 https://forums.pocketmine.net/members/magicode.50845/
 
+
+
+
+<img src="https://avatars3.githubusercontent.com/u/9031498?v=3&s=88"/>
 @Thunder33345
+
 
 Github:
 
