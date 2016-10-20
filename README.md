@@ -6,8 +6,17 @@ Development for creating a website for sharing PocketMine-MP plugins.
 
 Designed to replace the 'Plugins' page at https://pocketmine.net
 
+# Why Plug-On Was Created
+
+Plug-On was created to combat the lack of plugins availiable on the Pocketmine Plugins page. Plugin reviewers became inactive so authors were unable to post their work for server owners to use. Plug-On aims to stop this lack of Plugins available to server owners and bring a new flow of creativity into the Pocketmine Community. 
+
+# What it is
+
+Plug-On is a dynamic plugin list for Pocketmine-MP. It has a login system, as well as a user voting system. Users vote for plugins they like, and they work their way to the top. Admins do not have to approve plugins (But that feature can be implemented if it's to your liking), but Admins can see every plugin that gets posted, and if the comments or content on the plugin are bad, then they can remove the plugins and take action against the author if needed. 
+
+This project is still being developed, you can check our To-Do list in the 'Issues' section to stay updated as we approach the 1.0.0 release. 
+
 # General Information
-Plug-On is a project meant to give Pocketmine-MP Plugin developers a chance to publish their plugins. It replaces the 'Plugins' page, as mentioned above. It was created because of the inability of Developers to submit their plugins to Pocketmine.
 
 Gitter:
 https://gitter.im/Plug-On/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link
