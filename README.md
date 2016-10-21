@@ -25,7 +25,11 @@ Not a Programmer? You can help as well! By Downloading this repository, extracti
 # General Information
 
 Gitter:
-https://gitter.im/Plug-On/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link
+We are no longer on Gitter, please use our Slack team instead
+
+Slack:
+https://plug-on.slack.com
+Private Message @Magicode1 or @PrimusLV to be invited!
 
 Founders:
 
