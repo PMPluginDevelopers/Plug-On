@@ -7,24 +7,18 @@
   <body style="background-color:blue">
 
 <h1 style="font-family:sans-serif;text-align:center">Post Your Pocketmine Plugin Here!</h1>
-<h2>Choose file</h2>
-<p style=">Choose a File to Upload to the Plugins List!</p>
-
+<p style="font-family:sans-serif">Choose a File to Upload to the Plugins List!</p>
 	<form action="" method="POST" enctype="multipart/form-data">
 		<input type="text" name="name" placeholder="Plugin Name" required="required"/><br>
-
 		<input type="hidden" name="MAX_FILE_SIZE" value="2500000"/>
 		<input type="file" name="phar" required="required"/><br>
-
 		<input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
 		<input type="file" placeholder="Select Plugin Image" name="image" required="required"/><br>
-
 		<textarea name="description" rows="10" cols="50" placeholder="Plugin Description..."
 		          required="required"></textarea><br>
-
 		<input type="hidden" name="token" value="7b5b0f8d72b39c9f075e9b3d0329b7d9">
-
 		<button type="submit">Upload</button>
 	</form>
 </body>
 </html>
+
