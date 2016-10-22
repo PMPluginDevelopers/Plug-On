@@ -31,6 +31,8 @@ Slack:
 https://plug-on.slack.com
 Private Message @Magicode1 or @PrimusLV to be invited!
 
+This Project Uses Some Resources from Poggit, Open-source Plugin Software by @SOF3
+
 Founders:
 
 
