@@ -11,7 +11,7 @@ class PersistLocAjax extends Module {
     }
 
     public function output() {
-        SessionUtils::getInstance()->persistLoginLoc($_REQUEST["path"]);
+        SessionUtils::getInstance()->persistLoginLoc($_REQUEST["path"] ?? "");
         echo "{}";
     }
     
