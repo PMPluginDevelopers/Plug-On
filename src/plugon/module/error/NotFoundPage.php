@@ -1,3 +1,4 @@
+<?php
 namespace plugon\module\error;
 
 use plugon\module\Module;
