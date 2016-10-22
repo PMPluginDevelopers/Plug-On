@@ -28,7 +28,7 @@ class ExampleModule extends Module {
             }
           ?>
         </body>
-     <html>
+     </html>
     <?php
   }
 
