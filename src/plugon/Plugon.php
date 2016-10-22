@@ -10,7 +10,7 @@ use RuntimeException;
 use stdClass;
 
 final class Plugon {
-    const POGGIT_VERSION = "1.0";
+    const PLUGON_VERSION = "1.0";
 
     const PROJECT_TYPE_PLUGIN = 1;
     const PROJECT_TYPE_LIBRARY = 2;
