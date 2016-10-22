@@ -1,4 +1,4 @@
-<img src="https://github.com/PMPluginDevelopers/PocketMine-Plugins-List/blob/master/assets/images/Plug-On_logo.png?raw=true" alt="Plug-On"/>
+<img src="https://raw.githubusercontent.com/PMPluginDevelopers/Plug-On/master/assets/images/plug-on.png" alt="Plug-On"/>
 
 
 
