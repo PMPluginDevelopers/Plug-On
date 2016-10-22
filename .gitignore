@@ -3,3 +3,5 @@ secret
 *.log
 *.sqlite
 *.sql
+.idea/
+local/
