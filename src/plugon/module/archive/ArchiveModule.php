@@ -21,21 +21,9 @@ class ArchiveModule extends Module {
             </head>
             <body>
             <?php $this->bodyHeader() ?>
-            <div id="body">
-                <h1 class="motto">Concentrate on your code. Leave the dirty work to the machines.</h1>
-                <p class="submotto">
-                    Automatic development builds. Advanced plugin lint. Synchronized releases with GitHub releases.
-                    Vote-based community translations system. Register with GitHub and enable the magic with a few
-                    clicks.
-                </p>
-                <p class="submotto">
-                    Why does Plugon exist? Simply to stop this situation from the web comic
-                    <a href="https://xkcd.com/1319"><em>xkcd</em></a> from happening.
-                    <br>
-                    <a href="https://xkcd.com/1319"><img src="https://imgs.xkcd.com/comics/automation.png"></a>
-                    <br>
-                </p>
-            </div>
+                <div id="body">
+                    <center>Plugon - PocketMine Plugin Archive</center>
+                </div>
             </body>
             </html>
             <?php

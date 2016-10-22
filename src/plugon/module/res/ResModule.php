@@ -30,7 +30,6 @@ class ResModule extends Module {
     public function output() {
         $resDir = $this->resDir();
         $path = realpath($resDir . $this->getQuery());
-        echo $resDir, $path;    
         if(isset(self::$BANNED[$this->getQuery()])) {
             $this->errorAccessDenied();
         }

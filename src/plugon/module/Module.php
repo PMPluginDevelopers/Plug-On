@@ -58,28 +58,16 @@ abstract class Module {
         $session = SessionUtils::getInstance();
         ?>
         <div id="header">
-            <ul class="navbar">
-                <li style="padding-right: 0; vertical-align: middle;"><img
-                        src="<?= Plugon::getRootPath() ?>res/plugon.png" width="32"></li>
-                <li><span class="tm">Plugon</span></li>
-                <li class="navbutton" data-target="">Home</li>
-                <li class="navbutton" data-target="build">Builds</li>
-                <li class="navbutton extlink" data-target="https://github.com/PMPluginDevelopers/Plug-On">GitHub</li>
-                <div style="float: right; padding-right: 50px">
-                    <?php if($session->isLoggedIn()) { ?>
-                        <li><span onclick="logout()" class="action">Logout as <?= $session->getLogin()["name"] ?></span>
-                        </li>
-                    <?php } else { ?>
-                        <li>
-                            <span
-                                onclick='login(["user:email", "repo"])'
-                                class="action">
-                                Login with GitHub
-                            </span>
-                        </li>
-                    <?php } ?>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo right">Logo</a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li class="navbutton" data-target="archive">Archive</li>
+                        <li class="navbutton" data-target="submit">Submit</li>
+                        <li class="navbutton extlink" data-target="https://github.com/PMPluginDevelopers/Plug-On">Github</li>
+                    </ul>
                 </div>
-            </ul>
+            </nav>
         </div>
         <?php
     }
@@ -87,7 +75,9 @@ abstract class Module {
     protected function headIncludes() {
         ?>
         <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
         <link type="text/css" rel="stylesheet" href="<?= Plugon::getRootPath() ?>res/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <link type="image/x-icon" rel="icon" href="<?= Plugon::getRootPath() ?>res/plugon.ico">
         <?php
         $this->includeJs("std");
