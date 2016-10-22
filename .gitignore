@@ -1,4 +1,5 @@
-.idea/* #for IDEs
-.idea
-local/* #just for the sake of locally testing something without getting tracked by git
-local
+logs
+secret
+*.log
+*.sqlite
+*.sql
