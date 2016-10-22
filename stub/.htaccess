@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^<PATH>(.+)$ <PATH>index.php?__path=$1 [QSA]
+# Replace <PATH> with plug-on install directory
