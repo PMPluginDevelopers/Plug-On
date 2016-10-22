@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/PMPluginDevelopers/Plug-On/master/assets/images/plug-on.png" alt="Plug-On"/>
+<img src="https://github.com/PMPluginDevelopers/Plug-On/blob/master/images/plug-on.png?raw=trueg" alt="Plug-On"/>
 
 
 
