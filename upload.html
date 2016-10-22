@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>PocketMine Plugin Developers | Post a Plugin</title>
-  </head>
+</head>
 
-  <body bgcolor="#8585ad">
+<body bgcolor="#8585ad">
 
 <h1 style="font-family:sans-serif;text-align:center">Post Your Pocketmine Plugin Here!</h1>
 <p style="font-family:sans-serif">Choose a File to Upload to the Plugins List!</p>
-	<form action="uploadplugin.php" method="POST" enctype="multipart/form-data">
-		<input type="text" name="name" placeholder="Plugin Name" required="required"/><br>
-		<input type="hidden" name="MAX_FILE_SIZE" value="2500000"/>
-		<input type="file" name="phar" required="required"/><br>
-		<input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-		<input type="file" placeholder="Select Plugin Image" name="image" required="required"/><br>
-		<textarea name="description" rows="10" cols="50" placeholder="Plugin Description..."
-		          required="required"></textarea><br>
-		<input type="hidden" name="token" value="7b5b0f8d72b39c9f075e9b3d0329b7d9">
-		<button type="submit">Upload</button>
-	</form>
+<form action="" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Plugin Name" required="required"/><br>
+    <p>
+        Plugin: (.phar only)<br>
+        <input type="hidden" name="MAX_FILE_SIZE" value="2500000"/>
+        <input type="file" name="phar" required="required"/><br>
+    </p>
+    <p>
+        Plugin Image:
+        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+        <input type="file" placeholder="Select Plugin Image" name="image" required="required"/><br>
+    </p>
+    <textarea name="description" rows="10" cols="50" placeholder="Plugin Description..." required="required"></textarea><br>
+    <input type="hidden" name="token" value="{Placeholder here}">
+    <button type="submit">Upload</button>
+</form>
 </body>
 </html>
 
