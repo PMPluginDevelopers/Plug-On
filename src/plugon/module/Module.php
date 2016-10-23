@@ -60,7 +60,6 @@ abstract class Module {
         <div id="header">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo right">Logo</a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li class="navbutton" data-target="archive">Archive</li>
                         <li class="navbutton" data-target="submit">Submit</li>
@@ -74,6 +73,8 @@ abstract class Module {
 
     protected function headIncludes() {
         ?>
+        <!--Import Google Icon Font-->
+        <link type="text/css" href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
         <link type="text/css" rel="stylesheet" href="<?= Plugon::getRootPath() ?>res/style.css">
@@ -81,6 +82,34 @@ abstract class Module {
         <link type="image/x-icon" rel="icon" href="<?= Plugon::getRootPath() ?>res/plugon.ico">
         <?php
         $this->includeJs("std");
+    }
+    
+    protected function drawFooter() {
+        ?>
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        <?php
     }
 
     protected function includeJs(string $fileName) {

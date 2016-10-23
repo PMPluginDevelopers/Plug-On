@@ -21,7 +21,7 @@ final class Plugon {
     const BUILD_CLASS_PR        = 4;
     
     const CG_NONE                       = 0x00;
-    const CG_ADMIN                      = 0x01;
+    const CG_ADMIN_TOOLS                = 0x01;
     const CG_ANTI_GRIEFING_TOOLS        = 0x02;
     const CG_CHAT_RELATED               = 0x03;
     const CG_DEVELOPER_TOOLS            = 0x04;
