@@ -100,11 +100,12 @@ class ArchiveModule extends Module {
         							<section>
         								<span class="icon major fa-bolt accent2"></span>
         								<h3>Introducing Plug - On</h3>
-        								<p>When plugin reviewers over at http//:pocketmine.net went inactive, authors were unable to post their plugins for server owners to enjoy. </p>
+        								<p>When plugin reviewers over at http://pocketmine.net went inactive, authors were unable to post their plugins for server owners to enjoy. </p>
         							</section>
         							<section>
         								<span class="icon major fa-area-chart accent3"></span>
                                         <h3>Plug-On is the Solution.</h3>
+                                        <p>The perfect way to share plugins across the community</p> 
         							</section>
         						</div>
         						
@@ -131,14 +132,6 @@ class ArchiveModule extends Module {
         
         			<!-- Footer -->
         				<footer id="footer">
-        					<ul class="icons">
-        						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-        						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-        						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-        						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-        					</ul>
         					<ul class="copyright">
         						<li>&copy; Plug-On. All rights reserved.</li><li>Design: <a href="https://github.com/PMPluginDevelopers">HTML5 UP</a></li>
         					</ul>
