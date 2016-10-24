@@ -1,0 +1,31 @@
+.auth-box {
+    width: 20em;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.auth-box form {
+    margin-bottom: 0.2em;
+}
+.auth-box ul {
+    padding-left: 0;
+    margin-bottom: 0.2em;
+    list-style: none;
+}
+.auth-box li {
+    padding-left: 0;
+    margin: 13px;
+}
+.auth-box p {
+    margin-bottom: 0.1em;
+}
+.auth-box input[type="submit"] {
+    width: 40%;
+    margin: 0 30% 0 30%;
+}
+.auth-box #auth-fp {
+    text-align: center;
+    color: gray;
+    text-decoration: none;
+    margin-top: 8px;
+}
