@@ -3,7 +3,7 @@ namespace plugon\module\ajax;
 
 use plugon\module\Module;
 use plugon\output\OutputManager;
-use plugon\Poggit;
+use plugon\plugon;
 use plugon\session\SessionUtils;
 use function plugon\redirect;
 

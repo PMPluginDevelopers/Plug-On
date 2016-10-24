@@ -1,7 +1,15 @@
+# For IDE
+.idea
+
+# Webserver logs
 logs
-secret
 *.log
 *.sqlite
 *.sql
 .idea/
 local/
+# Self explenatory
+secret
+# Other
+*.htaccess
+index.php

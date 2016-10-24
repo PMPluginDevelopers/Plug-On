@@ -1,34 +1,15 @@
-/*
- * Copyright 2016 poggit
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 html {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-#header {
-    font-family:      "Courier New", monospace;
-    background-color: black;
-    color:            white;
-    margin:           0;
-    border-bottom:    1px groove;
-    padding:          15px 40px;
-    position:         absolute;
-    top:              0;
-    left:             0;
-    right:            0;
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+main {
+    flex: 1 0 auto;
+}
+#header {}
 ul.navbar {
     overflow:   hidden;
     list-style: none;
@@ -57,12 +38,9 @@ a.navlink {
     color:           inherit;
     text-decoration: inherit;
     border-bottom:   inherit;
-!important;
 }
 #body {
     padding:  25px 10%;
-    width:    80%;
-    position: absolute;
 }
 hr {
     border: 1px ridge #D8D8D8;
@@ -187,4 +165,10 @@ img.gh-logo {
 }
 .colored-bullet.pink {
     color: deeppink;
+}
+#greeting {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  margin: 15px;
 }

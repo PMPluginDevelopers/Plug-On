@@ -15,9 +15,7 @@ class InternalErrorModule extends Module {
         <!-- Error ref ID: <?= $this->getQuery() ?> -->
         <html>
         <head>
-            <style type="text/css">
-                <?php readfile(RES_DIR . "style.css") ?>
-            </style>
+            <?php $this->includeCss("style.css") ?>
             <title>500 Internal Server Error</title>
         </head>
         <body>

@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/PMPluginDevelopers/Plug-On/master/assets/images/plug-on.png" alt="Plug-On"/>
+<img src="https://github.com/PMPluginDevelopers/Plug-On/blob/master/images/plug-on.png?raw=trueg" alt="Plug-On"/>
 
 
 
@@ -21,6 +21,8 @@ This project is still being developed, you can check our To-Do list in the 'Issu
 Want to help make Plug-On better for all? We are looking for developers well versed in PHP or HTML (or both!) to help develop our website software. 
 
 Not a Programmer? You can help as well! By Downloading this repository, extracting it into a folder, and opening up the index.html file, you can help us bug test! Please don't post duplicate Issues.
+
+Official Test site: http://plug-on-chris-prime.c9users.io/
 
 # General Information
 
@@ -78,6 +80,26 @@ Pocketmine:
 
 https://forums.pocketmine.net/members/thunder33345.9206/
 
+# MVP's
+
+<img src="https://forums.pocketmine.net/data/avatars/l/25/25050.jpg?1469909463" alt="Primus"/>
+@PrimusLV
+
+Github:
+https://github.com/PrimusLV
+
+Pocketmine:
+https://forums.pocketmine.net/members/primus.25050/
+
+
+<img src="https://forums.pocketmine.net/data/avatars/l/25/25882.jpg?1471194107" alt="archie426"/>
+@archie426
+
+Github:
+https://github.com/archie426
+
+Pocketmine:
+https://forums.pocketmine.net/members/archie426.25882/
 
 
 

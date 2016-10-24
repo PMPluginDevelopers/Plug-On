@@ -10,15 +10,30 @@ use RuntimeException;
 use stdClass;
 
 final class Plugon {
-    const POGGIT_VERSION = "1.0";
+    const PLUGON_VERSION = "1.0";
 
-    const PROJECT_TYPE_PLUGIN = 1;
-    const PROJECT_TYPE_LIBRARY = 2;
+    const PROJECT_TYPE_PLUGIN   = 1;
+    const PROJECT_TYPE_LIBRARY  = 2;
 
-    const BUILD_CLASS_DEV = 1;
-    const BUILD_CLASS_BETA = 2;
-    const BUILD_CLASS_RELEASE = 3;
-    const BUILD_CLASS_PR = 4;
+    const BUILD_CLASS_DEV       = 1;
+    const BUILD_CLASS_BETA      = 2;
+    const BUILD_CLASS_RELEASE   = 3;
+    const BUILD_CLASS_PR        = 4;
+    
+    const CG_NONE                       = 0x00;
+    const CG_ADMIN_TOOLS                = 0x01;
+    const CG_ANTI_GRIEFING_TOOLS        = 0x02;
+    const CG_CHAT_RELATED               = 0x03;
+    const CG_DEVELOPER_TOOLS            = 0x04;
+    const CG_ECONOMY                    = 0x05;
+    const CG_FUN                        = 0x06;
+    const CG_GENERAL                    = 0x07;
+    const CG_INFORMATIONAL              = 0x08;
+    const CG_MECHANICS                  = 0x09;
+    const CG_MISCELLANEOUS              = 0x10;
+    const CG_TELEPORTATION              = 0x11;
+    const CG_WORLD_EDITING_N_MANAGMENT  = 0x12;
+    const CG_WORLD_GENERATOR            = 0x13;
 
     const GH_API_PREFIX = "https://api.github.com/";
 
@@ -37,6 +52,24 @@ final class Plugon {
         self::BUILD_CLASS_BETA => "beta",
         self::BUILD_CLASS_RELEASE => "rc",
         self::BUILD_CLASS_PR => "pr"
+    ];
+    
+    
+    public static $PLUGIN_CATEGORY = [
+        self::CG_NONE => "N/A",
+        self::CG_ADMIN_TOOLS => "Admin Tools",
+        self::CG_ANTI_GRIEFING_TOOLS => "Anti-Griefing Tools",
+        self::CG_CHAT_RELATED => "Chat Related",
+        self::CG_DEVELOPER_TOOLS => "Developer Tools",
+        self::CG_ECONOMY => "Economy",
+        self::CG_FUN => "Fun",
+        self::CG_GENERAL => "General",
+        self::CG_INFORMATIONAL => "Informational",
+        self::CG_MECHANICS => "Mechanics",
+        self::CG_MISCELLANEOUS => "Miscellaneous",
+        self::CG_TELEPORTATION => "Teleportational",
+        self::CG_WORLD_EDITING_N_MANAGMENT => "World Editing & Managment",
+        self::CG_WORLD_GENERATOR => "World Generator"
     ];
 
     public static $curlCounter = 0;
