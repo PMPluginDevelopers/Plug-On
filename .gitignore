@@ -1,13 +1,13 @@
 # For IDE
 .idea
+local/
 
 # Webserver logs
 logs
+error_log
 *.log
 *.sqlite
 *.sql
-.idea/
-local/
 # Self explenatory
 secret
 # Other
