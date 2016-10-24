@@ -55,7 +55,7 @@ abstract class Module {
     }
 
     protected function drawHeader() {
-        require \plugon\ASSETS_DIR . "header.php";
+        $this->includePhp("header");
     }
 
     protected function headIncludes() {
@@ -67,7 +67,7 @@ abstract class Module {
     }
     
     protected function drawFooter() {
-        require \plugon\ASSETS_DIR . "footer.php";
+        $this->includePhp("footer");
     }
 
     protected function includeJs(string $fileName) {
@@ -80,6 +80,10 @@ abstract class Module {
         ?>
         <link type="text/css" rel="stylesheet" href="<?= \plugon\CSS_DIR . $fileName ?>.css">
         <?php
+    }
+    
+    protected function includePhp(string $fileName) {
+        require \plugon\ASSETS_DIR . $fileName . ".php";
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection
