@@ -78,6 +78,26 @@ Pocketmine:
 
 https://forums.pocketmine.net/members/thunder33345.9206/
 
+# MVP's
+
+<img src="https://forums.pocketmine.net/data/avatars/l/25/25050.jpg?1469909463" alt="Primus"/>
+@PrimusLV
+
+Github:
+https://github.com/PrimusLV
+
+Pocketmine:
+https://forums.pocketmine.net/members/primus.25050/
+
+
+<img src="https://forums.pocketmine.net/data/avatars/l/25/25882.jpg?1471194107" alt="archie426"/>
+@archie426
+
+Github:
+https://github.com/archie426
+
+Pocketmine:
+https://forums.pocketmine.net/members/archie426.25882/
 
 
 
