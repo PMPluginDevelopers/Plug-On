@@ -64,7 +64,7 @@ class ArchiveModule extends Module {
         							<section>
         								<span class="icon major fa-area-chart accent3"></span>
                                         <h3>Plug-On is the Solution.</h3>
-                                        <p>The perfect way to share plugins across the community</p> 
+                                        <p>The perfect way to share plugins across the community, Plug - On will help plugin developers share their content with the world! Have Fun!</p> 
         							</section>
         						</div>
         						
