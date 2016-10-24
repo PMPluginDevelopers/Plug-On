@@ -22,6 +22,8 @@ Want to help make Plug-On better for all? We are looking for developers well ver
 
 Not a Programmer? You can help as well! By Downloading this repository, extracting it into a folder, and opening up the index.html file, you can help us bug test! Please don't post duplicate Issues.
 
+Official Test site: http://plug-on-chris-prime.c9users.io/
+
 # General Information
 
 Gitter:
