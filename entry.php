@@ -23,6 +23,7 @@ namespace plugon {
     if(!defined('plugon\CSS_DIR')) define('plugon\CSS_DIR', "res" . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\FONT_DIR')) define('plugon\FONT_DIR', "res" . DIRECTORY_SEPARATOR . "fonts" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\SASS_DIR')) define('plugon\SASS_DIR', "res" . DIRECTORY_SEPARATOR . "sass" . DIRECTORY_SEPARATOR);
+    if(!defined('plugon\ASSETS_DIR')) define('plugon\ASSETS_DIR', INSTALL_PATH . "assets" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\LOG_DIR')) define('plugon\LOG_DIR', INSTALL_PATH . "logs" . DIRECTORY_SEPARATOR);
     
     /** @var Module[] */
