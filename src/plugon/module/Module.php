@@ -73,15 +73,10 @@ abstract class Module {
 
     protected function headIncludes() {
         ?>
-        <!--Import Google Icon Font-->
-        <link type="text/css" href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="<?= Plugon::getRootPath() ?>res/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-        <link type="image/x-icon" rel="icon" href="<?= Plugon::getRootPath() ?>res/plugon.ico">
         <?php
         $this->includeJs("std");
+        $this->includeCss("style");
     }
     
     protected function drawFooter() {
@@ -114,13 +109,13 @@ abstract class Module {
 
     protected function includeJs(string $fileName) {
         ?>
-        <script src="<?= Plugon::getRootPath() ?>js/<?= $fileName ?>.js"></script>
+        <script src="<?= \plugon\JS_DIR . $fileName ?>.js"></script>
         <?php
     }
 
     protected function includeCss(string $fileName) {
         ?>
-        <link type="text/css" rel="stylesheet" href="<?= Plugon::getRootPath() ?>res/<?= $fileName ?>.css">
+        <link type="text/css" rel="stylesheet" href="<?= \plugon\CSS_DIR . $fileName ?>.css">
         <?php
     }
 

@@ -4,12 +4,14 @@ namespace {
 }
 
 namespace plugon {
+    
     use plugon\utils\Logger;
     use plugon\output\OutputManager;
     use plugon\module\error\InternalErrorModule;
     use plugon\module\error\NotFoundPage;
     use plugon\module\Module;
     use RuntimeException;
+    
     if(!defined('plugon\DEFAULT_MODULE')) define('plugon\DEFAULT_MODULE', "archive");
     if(!defined('plugon\INSTALL_PATH')) define('plugon\INSTALL_PATH', PLUGON_INSTALL_PATH);
     if(!defined('plugon\SOURCE_PATH')) define('plugon\SOURCE_PATH', INSTALL_PATH . "src" . DIRECTORY_SEPARATOR);
@@ -17,7 +19,10 @@ namespace plugon {
     if(!defined('plugon\SECRET_PATH')) define('plugon\SECRET_PATH', INSTALL_PATH . "secret" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\RES_DIR')) define('plugon\RES_DIR', INSTALL_PATH . "res" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\RESOURCE_DIR')) define('plugon\RESOURCE_DIR', INSTALL_PATH . "resources" . DIRECTORY_SEPARATOR);
-    if(!defined('plugon\JS_DIR')) define('plugon\JS_DIR', INSTALL_PATH . "js" . DIRECTORY_SEPARATOR);
+    if(!defined('plugon\JS_DIR')) define('plugon\JS_DIR', "res" . DIRECTORY_SEPARATOR . "js" . DIRECTORY_SEPARATOR);
+    if(!defined('plugon\CSS_DIR')) define('plugon\CSS_DIR', "res" . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR);
+    if(!defined('plugon\FONT_DIR')) define('plugon\FONT_DIR', "res" . DIRECTORY_SEPARATOR . "fonts" . DIRECTORY_SEPARATOR);
+    if(!defined('plugon\SASS_DIR')) define('plugon\SASS_DIR', "res" . DIRECTORY_SEPARATOR . "sass" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\LOG_DIR')) define('plugon\LOG_DIR', INSTALL_PATH . "logs" . DIRECTORY_SEPARATOR);
     
     /** @var Module[] */
