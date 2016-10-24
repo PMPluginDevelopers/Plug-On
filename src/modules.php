@@ -8,6 +8,7 @@ use plugon\module\res\ResModule;
 use plugon\module\ajax\CsrfModule;
 use plugon\module\ajax\LogoutAjax;
 use plugon\module\ajax\PersistLocAjax;
+use plugon\module\auth\SignInModule;
 
 registerModule(ArchiveModule::class);
 //registerModule(SubmitModule::class);
@@ -18,3 +19,5 @@ registerModule(ResModule::class);
 registerModule(CsrfModule::class);
 registerModule(LogoutAjax::class);
 registerModule(PersistLocAjax::class);
+
+registerModule(SignInModule::class);

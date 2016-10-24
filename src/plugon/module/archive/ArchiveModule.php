@@ -79,13 +79,7 @@ class ArchiveModule extends Module {
         
         						</div>
         						<div class="6u 12u(narrower)">
-        
-        							
-        
-        						
-        					
-        
-        				
+
         			<!-- CTA -->
         				
 
