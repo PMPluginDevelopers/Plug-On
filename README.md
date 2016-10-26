@@ -1,6 +1,6 @@
 <img src="https://github.com/PMPluginDevelopers/Plug-On/blob/master/images/plug-on.png?raw=trueg" alt="Plug-On"/>
 
-<img src="https://files.slack.com/files-pri/T2SEHRFQV-F2UEVJPT2/screenshot_2016-10-26_at_10.23.22_am.png" alt="A New Place to Post Plugins"
+<img src="https://files.slack.com/files-pri/T2SEHRFQV-F2UEVJPT2/screenshot_2016-10-26_at_10.23.22_am.png" alt="A New Place to Post Plugins"/>
 
 Development for creating a website for sharing PocketMine-MP plugins.
 
