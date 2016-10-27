@@ -101,7 +101,7 @@ namespace plugon {
     function redirect(string $target = "", bool $absolute = false) {
         header("Location: " . ((!$absolute and $target !== "") ? Plugon::getRootPath() : "") . $target);
         Plugon::showStatus();
-        die;
+        //die;
     }
     function error_handler(int $errno, string $error, string $errfile, int $errline) {
         global $log;
