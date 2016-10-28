@@ -158,6 +158,9 @@ function ajax(path, options) {
         if(options.data === undefined) {
             options.data = {};
         }
+        if(options.method === undefined) {
+            options.method = "POST";
+        }
         options.data.csrf = token;
         $.ajax("/" + path, options).fail(function(response, code){
             console.log("ajax failed: " + code);

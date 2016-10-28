@@ -14,7 +14,7 @@ class SignUpModule extends Module {
     public function output() {
         $session = SessionUtils::getInstance();
         if($session->isLoggedIn()) {
-            redirect("/");
+            \plugon\redirect("/", true);
         }
         $siteKey = '6LctPgoUAAAAAOPMNiOYW9DS0vbACvFvECLyk4_H';
         $secret = '6LctPgoUAAAAAD43aFcHqnssQg9XbyF5bTLepbKq';
