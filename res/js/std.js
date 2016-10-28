@@ -18,6 +18,8 @@ function isLoggedIn() {
     return "${session.isLoggedIn}" == "true";
 }
 
+var loading_screen = false;
+
 var toggleFunc = function() {
     var $this = $(this);
     var name = $this.attr("data-name");
@@ -147,7 +149,7 @@ function fixSize() {
     $("#body").css("top", $("#header").outerHeight());
 }
 
-function ajax(path, options) {
+function ajax(path, options, fail) {
     $.post("/csrf", {}, function(token) {
         if(options === undefined) {
             options = {};
@@ -162,18 +164,35 @@ function ajax(path, options) {
             options.method = "POST";
         }
         options.data.csrf = token;
-        $.ajax("/" + path, options).fail(function(response, code){
-            console.log("ajax failed: " + code);
+        $.ajax("/" + path, options).fail(function(){
+            fail();
         });
     });
 }
 
 function logout() {
+    show_loading_wall();
     ajax("logout", {
         success: function() {
             window.location.reload(true);
         }
+    }, function(){
+        hide_loading_wall();
+        alert("Unexpected error, please try again later!");
     });
+}
+
+// TODO: Combine into toggle_loading_wall
+function show_loading_wall() {
+    if(loading_screen) return;
+    $(".loading-wall").fadeIn(300);
+    loading_screen = true;
+}
+
+function hide_loading_wall() {
+    if(!loading_screen) return;
+    $(".loading-wall").fadeOut(300);
+    loading_screen = false;
 }
 
 function promptDownloadResource(id, defaultName) {

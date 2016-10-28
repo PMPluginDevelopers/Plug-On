@@ -7,19 +7,11 @@ use plugon\session\SessionUtils;
 class LoginProcessAjax extends AjaxModule {
 
     protected function impl() {
-        $response = [
-            "status" => false
-            ];
-            
+        $response = ["status" => false];
         if(SessionUtils::isNameRegistered($_REQUEST["username"])) {
-        
-            $session = SessionUtils::getInstance();
-            $session->login($_REQUEST["username"]);
-            $session->verifyPassword($_REQUEST["password"]); // this is where passwords are verified
-            $response["status"] = $session->isLoggedIn() ? "OK" : false;
-        
+            $response["status"] = SessionUtils::getInstance()->login($_REQUEST["username"], $_REQUEST["password"]) ? 'OK' : false;
         } else {
-            Plugon::getLog()->e("User not registered"); // debug
+            Plugon::getLog()->i("User not registered"); // debug
         }
         
         echo json_encode($response);

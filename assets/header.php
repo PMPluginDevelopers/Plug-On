@@ -34,7 +34,7 @@
 			$session = \plugon\session\SessionUtils::getInstance();
 			if($session->isLoggedIn()) {
 				?>
-				<li><a href="/logout" class="button">Log out</a></li>
+				<li><a onclick="logout()" class="button">Log out</a></li>
 				<?php
 			} else {
 				?>

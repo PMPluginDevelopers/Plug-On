@@ -25,25 +25,25 @@ class SessionUtils {
     
     private function __construct() {
         session_start();
-        if(!isset($_SESSION["plugon"]["profile"])) $_SESSION["plugon"]["profile"] = [];
         if($this->isLoggedIn()) $this->loadProfileData();
     }
     
     public function isLoggedIn() : bool {
-        return count($_SESSION["plugon"]["profile"]) >= 2;
+        return !empty($_SESSION["plugon"]["profile"]) || isset($_SESSION["plugon"]["profile"]["name"]);
     }
     
     public static function isNameRegistered(string $name) : bool {
         $r = Plugon::getDb()->query("SELECT `uid` FROM `users` WHERE `name` LIKE '". Plugon::getDb()->getResource()->real_escape_string($name) ."';");
         if(!$r) return true;
-        Plugon::getLog()->e(json_encode([$r]));
-        return count($r->fetch_assoc()) === 1;
+        Plugon::getLog()->i(__METHOD__ . ": " . json_encode([$r->fetch_assoc()]));
+        //return !empty($r->fetch_assoc()["uid"]);
+        return true;
     }
     
     public static function isEmailRegistered(string $email) : bool {
         $r = Plugon::getDb()->query("SELECT `email` FROM `users` WHERE `email` LIKE '". Plugon::getDb()->getResource()->real_escape_string($email) ."';");
         if(!$r) return true;
-        return count($r->fetch_assoc()) === 1;
+        return isset($r->fetch_assoc()["email"]);
     }
     
     public static function register(string $name, string $password, string $email) : int {
@@ -83,45 +83,48 @@ class SessionUtils {
         return crypt($password, $salt);
     }
     
-    public function login(string $name) {
-        $_SESSION["plugon"]["profile"] = [
-            "name" => $name,
-            "displayName" => $name,
-        ];
+    public function login(string $name, string $password) : bool {
+        $_SESSION["plugon"]["profile"] = ["name" => $name];
+        Plugon::getLog()->i($this->isLoggedIn() ? "true" : "false");
         $this->loadProfileData();
+        $this->verifyPassword($password);
+        return $this->isLoggedIn();
     }
     
+    public function logout() {
+        Plugon::getLog()->i(__METHOD__ . ": " . json_encode($_SESSION));
+        $_SESSION["plugon"]["profile"] = [];
+    }
+
     public function verifyPassword(string $password) {
         if(!$this->isLoggedIn()) return;
-        else Plugon::getLog()->i("Not logged in");
         $logout = true;
-        $q = Plugon::getDb()->query("SELECT `hash` FROM `users` WHERE `name` LIKE '" . Plugon::getDb()->getResource()->real_escape_string($this->getName()) . "';");
-        if(!$q) {
-            $data = $q->fetch_assoc();
-            Plugon::getLog()->i(json_encode($data));
-            if(isset($data["hash"])) {
-                $hash = $data["hash"];
-                if(crypt($password, $hash) === $hash) $logout = false;
-                Plugon::getLog()->i($logout ? "true" : "false");
-            }
+        $hash = $_SESSION["plugon"]["profile"]["hash"] ?? "THIS WILL NOT EVER MATCH";
+        if(isset($hash)) {
+            if(crypt($password, $hash) === $hash) $logout = false;
+            Plugon::getLog()->i($logout ? "true" : "false");
         }
         if($logout) {
-            $_SESSION["plugon"]["profile"] = [];
+            $this->logout();
         } else {
             # TODO: Generate new password for additional safety
         }
     }
     
+    public function save() {
+        if($this->isLoggedIn()) {
+            
+        }
+    }
+    
     public function loadProfileData() {
-        if(!$this->isLoggedIn()) return;
+        if(!$this->isLoggedIn()){ return; Plugon::getLog()->i("Wont load user data, not logged in!"); }
         $query = "SELECT * FROM `users` WHERE `name` LIKE '" . Plugon::getDb()->getResource()->real_escape_string($this->getName()) . "';";
         $result = Plugon::getDb()->query($query);
-        Plugon::getLog()->i($query);
-        Plugon::getLog()->i(json_encode($result->fetch_assoc()));
         $data = $result ? $result->fetch_assoc() : null;
         if(!$result && !is_array($data)) {
             Plugon::getLog()->i("Profile doesn't exist");
-            $_SESSION["plugon"]["profile"] = []; // Profile doesn't exist
+            $this->logout();
             return;
         }
         $_SESSION["plugon"]["profile"] = array_merge(is_array($data) ? $data : [], $_SESSION["plugon"]["profile"]);

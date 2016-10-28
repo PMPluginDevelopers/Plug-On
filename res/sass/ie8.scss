@@ -13,7 +13,7 @@
 
 	pre, code {
 		position: relative;
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		-ms-behavior: url('/res/js/ie/PIE.htc');
 	}
 
 /* Form */
@@ -24,7 +24,7 @@
 	select,
 	textarea {
 		position: relative;
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		-ms-behavior: url('/res/js/ie/PIE.htc');
 		line-height: 3em;
 	}
 
@@ -47,7 +47,7 @@
 	input[type="button"],
 	.button {
 		position: relative;
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		-ms-behavior: url('/res/js/ie/PIE.htc');
 
 		&.alt {
 			border: solid 2px _palette(border);
@@ -58,7 +58,7 @@
 
 	.box {
 		position: relative;
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		-ms-behavior: url('/res/js/ie/PIE.htc');
 
 		.image {
 			&.featured {
@@ -73,7 +73,7 @@
 	.icon {
 		&.major {
 			position: relative;
-			-ms-behavior: url('assets/js/ie/PIE.htc');
+			-ms-behavior: url('/res/js/ie/PIE.htc');
 		}
 	}
 
@@ -81,11 +81,11 @@
 
 	.image {
 		position: relative;
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		-ms-behavior: url('/res/js/ie/PIE.htc');
 
 		img {
 			position: relative;
-			-ms-behavior: url('assets/js/ie/PIE.htc');
+			-ms-behavior: url('/res/js/ie/PIE.htc');
 		}
 	}
 
@@ -157,7 +157,7 @@
 		background-position:	auto;
 		background-repeat:		no-repeat;
 		background-size:		cover;
-		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+		-ms-behavior: url('/res/js/ie/backgroundsize.min.htc');
 
 		input[type="submit"],
 		input[type="reset"],
