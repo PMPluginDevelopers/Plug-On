@@ -1,12 +1,18 @@
 <?php
 namespace plugon\module\auth;
 
+include realpath(dirname(__FILE__)) . '/../Module.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+
 use plugon\module\Module;
 use plugon\session\SessionUtils;
 
 class SignInModule extends Module {
-    
-    public function getName() : string {
+
+	/**
+	 * @return string
+	 */
+    public function getName(){
         return "login";
     }
     
@@ -45,10 +51,10 @@ class SignInModule extends Module {
             				        <form method="POST" action="#" id="login-form" onsubmit="return login(this)">
             				            <ul>
             				                <p>Username</p>
-                				            <li><input name="username" placeholder="Username" value="" type="text" required></input></li>
+                				            <li><input name="username" placeholder="Username" value="" type="text" required></li>
                 				            <p>Password</p>
-                				            <li><input name="password" placeholder="" value="" type="password" required></input></li>
-                				            <li><input name="submit" value="Login" type="submit"></input></li>
+                				            <li><input name="password" placeholder="" value="" type="password" required></li>
+                				            <li><input name="submit" value="Login" type="submit"></li>
             				            </ul>
             				        </form>
             				        <a href="#" id="auth-fp">Forgot password?</a> | <a id="auth-fp" href="/register">Get an account</a>

@@ -1,41 +1,44 @@
 <?php
 namespace plugon\module;
-
 use plugon\module\error\AccessDeniedPage;
 use plugon\module\error\BadRequestPage;
 use plugon\module\error\NotFoundPage;
-use plugon\module\error\SimpleNotFoundPage;
 use plugon\output\OutputManager;
-use plugon\Plugon;
-use plugon\session\SessionUtils;
-
 abstract class Module {
+
+    const JS_DIR = 'res/js/';
+    const ASSETS_DIR = 'assets/';
+    const CSS_DIR = 'res/css/';
+    const RES_DIR = 'res/';
+    const EXTENSION = ".php";
+
     /** @var Module|null */
     public static $currentPage = null;
 
     /** @var string */
     private $query;
 
-    public function __construct(string $query) {
+    public function __construct($query) {
         $this->query = $query;
     }
 
+    /**
+     * @return string
+     */
     public function getQuery() {
         return $this->query;
     }
 
-    public abstract function getName() : string;
-
-    public function getAllNames() : array {
-        return [$this->getName()];
-    }
-
+    public abstract function getName();
     public abstract function output();
 
-    protected function errorNotFound(bool $simple = false) {
+    /**
+     * @param bool|false $simple
+     */
+    protected function errorNotFound($simple = false) {
         OutputManager::terminateAll();
         if($simple) {
-            (new SimpleNotFoundPage(""))->output();
+            (new NotFoundPage(""))->output();
         } else {
             (new NotFoundPage($this->getName() . "/" . $this->query))->output();
         }
@@ -44,11 +47,14 @@ abstract class Module {
 
     protected function errorAccessDenied() {
         OutputManager::terminateAll();
-        (new AccessDeniedPage($this->getName() . "/" . $this->query))->output();
+        (new AccessDeniedPage($this->getName() . "/" . $this->query))->output();#DENIED! XD
         die;
     }
 
-    protected function errorBadRequest(string $message) {
+    /**
+     * @param string $message
+     */
+    protected function errorBadRequest($message) {
         OutputManager::terminateAll();
         (new BadRequestPage($message))->output();
         die;
@@ -72,25 +78,35 @@ abstract class Module {
         $this->includePhp("footer");
     }
 
-    protected function includeJs(string $fileName) {
+    /**
+     * @param string $fileName
+     */
+    protected function includeJs($fileName) {
         ?>
-        <script src="<?= \plugon\JS_DIR . $fileName ?>.js"></script>
+        <script src="<?php echo self::JS_DIR . $fileName ?>.js"></script>
         <?php
     }
 
-    protected function includeCss(string $fileName) {
+    /**
+     * @param string $fileName
+     */
+    protected function includeCss($fileName) {
         ?>
-        <link type="text/css" rel="stylesheet" href="<?= \plugon\CSS_DIR . $fileName ?>.css">
+        <link type="text/css" rel="stylesheet" href="<?php echo self::CSS_DIR . $fileName ?>.css">
         <?php
     }
-    
-    protected function includePhp(string $fileName) {
-        require \plugon\ASSETS_DIR . $fileName . ".php";
+
+    /**
+     * @param string $fileName
+     */
+    protected function includePhp($fileName) {
+        include self::ASSETS_DIR . $fileName . self::EXTENSION;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection
      * @hide
      */
     private static function uselessFunction() {
+        return;
     }
 }

@@ -1,26 +1,21 @@
 <?php
 namespace plugon\module\archive;
 
+include realpath(dirname(__FILE__)) . '/../Module.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+
 use plugon\module\Module;
-use plugon\output\OutputManager;
-use plugon\Plugon;
 use plugon\session\SessionUtils;
 
 class ArchiveModule extends Module {
     
-    public function getName() : string {
-        return "archive";
+    public function getName() {
+        return "Archive";
     }
     
     public function output() {
         $session = SessionUtils::getInstance();
         ?>
-        <!DOCTYPE HTML>
-        <!--
-        	Alpha by HTML5 UP
-        	html5up.net | @ajlkn
-        	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-        -->
         <html>
         	<head>
         		<title>Plug-On</title>
@@ -100,7 +95,12 @@ class ArchiveModule extends Module {
         
         	</body>
         </html>
+
         <?php
+
     }
     
 }
+
+$c = new \plugon\module\archive\ArchiveModule(mt_rand());
+$c->output();

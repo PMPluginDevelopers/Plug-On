@@ -1,10 +1,13 @@
 <?php
 namespace plugon\module\res;
 
+include realpath(dirname(__FILE__)) . '/../Module.php';
+include realpath(dirname(__FILE__)) . '/../../Plugon.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+
 use plugon\module\Module;
-use plugon\Poggit;
+use plugon\Plugon;
 use plugon\session\SessionUtils;
-use const plugon\RES_DIR;
 
 class ResModule extends Module {
     static $TYPES = [
@@ -19,12 +22,12 @@ class ResModule extends Module {
         "banned"
     ];
 
-    public function getName() : string {
+    public function getName(){
         return "res";
     }
 
-    protected function resDir() : string {
-        return RES_DIR;
+    protected function resDir() {
+        return Module::RES_DIR;
     }
 
     public function output() {
@@ -46,13 +49,17 @@ class ResModule extends Module {
         }
     }
 
-    protected function translateVar(string $key) {
+    /**
+     * @param $key
+     * @return string
+     */
+    protected function translateVar($key) {
         if($key === "path.relativeRoot") {
-            return Poggit::getRootPath();
+            return Plugon::getRootPath();
         }
-        if($key === "session.antiForge") {
-            return SessionUtils::getInstance()->getAntiForge();
-        }
+//        if($key === "session.antiForge") {
+//            return SessionUtils::getInstance()->getAntiForge();
+//        }
         if($key === "session.isLoggedIn") {
             return SessionUtils::getInstance()->isLoggedIn() ? "true" : "false";
         }

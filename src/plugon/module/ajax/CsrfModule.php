@@ -17,11 +17,17 @@
  * limitations under the License.
  */
 namespace plugon\module\ajax;
+
+include realpath(dirname(__FILE__)) . '/../Module.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+
 use plugon\module\Module;
 use plugon\session\SessionUtils;
 class CsrfModule extends Module {
-
-    public function getName() : string {
+    /**
+     * @return string
+     */
+    public function getName(){
         return "csrf";
     }
     public function output() {

@@ -38,38 +38,63 @@ class Logger {
         }
     }
 
-    public function v(string $message) {
+    /**
+     * @param string $message
+     */
+    public function verbose(\string $message) {
         $this->log(self::LEVEL_VERBOSE, $message);
     }
 
-    public function d(string $message) {
+    /**
+     * @param string $message
+     */
+    public function debug(\string $message) {
         $this->log(self::LEVEL_DEBUG, $message);
     }
 
-    public function i(string $message) {
+    /**
+     * @param string $message
+     */
+    public function info(\string $message) {
         $this->log(self::LEVEL_INFO, $message);
     }
 
-    public function w(string $message) {
+    /**
+     * @param string $message
+     */
+    public function warning(\string $message) {
         $this->log(self::LEVEL_WARN, $message);
     }
 
-    public function e(string $message) {
+    /**
+     * @param string $message
+     */
+    public function error(\string $message) {
         $this->log(self::LEVEL_ERROR, $message);
     }
 
-    public function wtf(string $message) {
+    /**
+     * @param string $message
+     */
+    public function wtf(\string $message) {
         $this->log(self::LEVEL_ASSERT, $message);
     }
 
-    private function log(string $level, string $message) {
+    /**
+     * @param string $level
+     * @param string $message
+     */
+    private function log(\string $level, \string $message) {
         if(!isset($this->streams[$level])) {
             $this->createStream($level);
         }
         fwrite($this->streams[$level], date('M j H:i:s ') . $message . "\n");
     }
 
-    private function createStream(string $level) {
+    /**
+     * @param string $level
+     */
+    private function createStream(\string $level) {
         $this->streams[$level] = fopen(LOG_DIR . "$level.log", "at");
     }
 

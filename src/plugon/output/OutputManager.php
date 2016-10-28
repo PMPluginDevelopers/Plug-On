@@ -14,7 +14,7 @@ class OutputManager {
     /** @var string */
     private $buffer = "";
 
-    public function __construct(OutputManager $parent = null) {
+    public function __construct($parent = null) {
         $this->parent = $parent;
         self::$current = $this;
 
@@ -23,23 +23,29 @@ class OutputManager {
         }
     }
 
-    public static function startMinifyHtml() : OutputManager {
+    /**
+     * @return null|OutputManager
+     */
+    public static function startMinifyHtml(){
         return self::$current->startChild();
     }
 
-    public static function endMinifyHtml(OutputManager $manager) {
+    /**
+     * @param OutputManager $manager
+     */
+    public static function endMinifyHtml($manager) {
         ob_flush();
         $manager->processedOutput(function ($html) {
             $processed = preg_replace('/[ \t]+/m', " ", $html);
             $processed = preg_replace('/[ ]?\n[ ]/', "\n", $processed);
             $hlen = strlen($html);
             $plen = strlen($processed);
-            Plugon::getLog()->v("Minified $hlen - $plen = " . ($hlen - $plen) . " bytes (" . ((1 - $plen / $hlen) * 100) . "%)");
+            Plugon::getLog()->verbose("Minified $hlen - $plen = " . ($hlen - $plen) . " bytes (" . ((1 - $plen / $hlen) * 100) . "%)");
             return $processed;
         });
     }
 
-    public function startChild() : OutputManager {
+    public function startChild(){
         if($this->child !== null) {
             return $this->child->startChild();
         }
@@ -101,13 +107,17 @@ class OutputManager {
         }
     }
 
-    public static function terminateAll() : bool {
+    /**
+     * @return bool
+     */
+    public static function terminateAll(){
         if(OutputManager::$current !== null) {
             OutputManager::$current->terminateTree();
             return true;
         }
         return false;
     }
+
 
     private function terminateTree() {
         if($this->parent !== null) {
@@ -117,11 +127,17 @@ class OutputManager {
         $this->terminate();
     }
 
-    protected function closeChild(string $buffer) {
+    /**
+     * @param $buffer
+     */
+    protected function closeChild($buffer) {
         $this->append($buffer);
         $this->child = null;
     }
 
+    /**
+     * @param $buffer
+     */
     protected function append($buffer) {
         $this->buffer .= $buffer;
     }

@@ -6,7 +6,7 @@ use plugon\session\SessionUtils;
 
 class ExampleModule extends Module {
 
-  public function getName() : string {
+  public function getName(){
     return "example";
   }
   
@@ -23,7 +23,7 @@ class ExampleModule extends Module {
           <?php
             if ($session->isLoggedIn()) {
               ?>
-                <p>Welcome <?php=$session->getLogin()["name"]; ?></p>
+                <p>Welcome <?php $session->getLogin()["name"]; ?></p>
               <?php
             }
           ?>

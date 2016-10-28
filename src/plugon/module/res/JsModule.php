@@ -1,14 +1,21 @@
 <?php
 namespace plugon\module\res;
 
-use const plugon\JS_DIR;
+include realpath(dirname(__FILE__)) . '/../Module.php';
+use plugon\module\Module;
 
 class JsModule extends ResModule {
-    public function getName() : string {
+    /**
+     * @return string
+     */
+    public function getName(){
         return "js";
     }
 
-    protected function resDir() : string {
-        return JS_DIR;
+    /**
+     * @return string
+     */
+    protected function resDir(){
+        return Module::JS_DIR;
     }
 }

@@ -1,6 +1,9 @@
 <?php
 namespace plugon\module\ajax;
 
+include realpath(dirname(__FILE__)) . '/../../Plugon.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+
 use plugon\Plugon;
 use plugon\session\SessionUtils;
 
@@ -11,21 +14,30 @@ class LoginProcessAjax extends AjaxModule {
         if(SessionUtils::isNameRegistered($_REQUEST["username"])) {
             $response["status"] = SessionUtils::getInstance()->login($_REQUEST["username"], $_REQUEST["password"]) ? 'OK' : false;
         } else {
-            Plugon::getLog()->i("User not registered"); // debug
+            Plugon::getLog()->info("User not registered"); // debug
         }
         
         echo json_encode($response);
     }
 
-    public function getName() : string {
-        return "loginProcess";
+    /**
+     * @return string
+     */
+    public function getName(){
+        return "LoginProcess";
     }
-    
-    protected function needLogin() : bool {
+
+    /**
+     * @return bool
+     */
+    protected function needLogin(){
         return false;
     }
 
-    protected function fallback() : bool {
+    /**
+     * @return bool
+     */
+    protected function fallback() {
         return true;
     }
 

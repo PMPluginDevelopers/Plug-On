@@ -1,14 +1,26 @@
 <?php
 namespace plugon\utils;
-use plugon\Plugon;
-
 class MySQLHelper {
 	
-	const GET_USER = "SELECT * FROM `users` WHERE `name` LIKE '?'";
-	
+	const GET_USER = "SELECT * FROM users WHERE name LIKE '?'";
+
+    /**
+     * @var \mysqli
+     */
 	protected $mysqli;
-	
-	public function __construct(string $host, string $user, string $password, string $database, int $port = 3306) {
+    /**
+     * @var string
+     */
+    public $error;
+
+    /**
+     * @param string $host
+     * @param string $user
+     * @param string $password
+     * @param string $database
+     * @param int $port
+     */
+	public function __construct($host, $user, $password,  $database, $port = 3306) {
 		$this->mysqli = new \mysqli($host, $user, $password, $database, $port);
 		if($this->mysqli->connect_errno) {
 			throw new \RuntimeException("Connection to MySQL database failed (" . $this->mysqli->connect_errno . "): " . $this->mysqli->connect_error);
@@ -23,8 +35,8 @@ class MySQLHelper {
 	 * 
 	 * @return int affected rows
 	 */
-	public function insert(string $table, array $col, array $values, string $condition = "") : int {
-		$query = "INSERT INTO `$table` (";
+	public function insert($table, array $col, array $values, $condition = ""){
+		$query = "INSERT INTO $table (";
 		foreach ($col as $key => $value){
 			$query .= "$value, ";
 		}
@@ -50,31 +62,42 @@ class MySQLHelper {
 	 * @param string $query
 	 * @return mixed
 	 */
-	public function query(string $query) {
+	public function query($query) {
 		global $log;
 		$r = $this->mysqli->query($query);
 		if(!$r) {
-			$log->e("MySQL Query failed (" . $this->mysqli->errno . "): " . $this->mysqli->error);
-			$log->e("Query: '$query'");
-			$log->e("================================================");
+            $this->error = mysqli_error($this->mysqli);
+            $log->error("================================================");
+			$log->error("MySQL Query failed (" . $this->mysqli->errno . "): " . $this->mysqli->error);
+			$log->error("Query: '$query'");
+			$log->error("================================================");
 			return false;
 		}
 		return $r;
 	}
 	
-	public function getResource() : \mysqli {
+	public function getResource(){
 		return $this->mysqli;
 	}
-	
+
+	/**
+	 * @param $query
+	 * @param array $params
+	 * @return \mysqli_stmt
+	 */
 	public function prepare($query, array $params = []) {
 		$stmt = $this->mysqli->prepare($query);
-		foreach($param as $param) {
-			$stmt->bindParam(self::typeToCharacter($param), $param);
+		foreach($params as $param) {
+			$stmt->bind_param(self::typeToCharacter($param), $param);
 		}
 		return $stmt;
 	}
-	
-	public static function typeToCharacter($var) : string {
+
+	/**
+	 * @param $var
+	 * @return string
+	 */
+	public static function typeToCharacter($var){
 		if(is_int($var)) {
 			return "i";
 		}elseif(is_double($var)) {

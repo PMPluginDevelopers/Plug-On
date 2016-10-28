@@ -1,13 +1,20 @@
 <?php
 namespace plugon\module\auth;
 
+include realpath(dirname(__FILE__)) . '/../Module.php';
+include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+include realpath(dirname(__FILE__)) . '/../../utils/ErrorCatcher.php';
+
 use plugon\module\Module;
 use plugon\session\SessionUtils;
 use plugon\utils\ErrorCatcher;
 
 class SignUpModule extends Module {
-    
-    public function getName() : string {
+
+    /**
+     * @return string
+     */
+    public function getName() {
         return "register";
     }
     
@@ -17,7 +24,6 @@ class SignUpModule extends Module {
             \plugon\redirect("/", true);
         }
         $siteKey = '6LctPgoUAAAAAOPMNiOYW9DS0vbACvFvECLyk4_H';
-        $secret = '6LctPgoUAAAAAD43aFcHqnssQg9XbyF5bTLepbKq';
         $lang = 'en';
         
         // THIS IS ONLY FOR DEBUGGING
@@ -65,14 +71,14 @@ class SignUpModule extends Module {
             				        <form method="POST" id="register-form"  onsubmit="return register(this)" action="#">
             				            <ul>
             				                <p>Username</p>
-                				            <li><input name="username" placeholder="" value="" type="text" required></input></li>
+                				            <li><input name="username" placeholder="" value="" type="text" required></li>
                 				            <p>Password</p>
-                				            <li><input name="password" placeholder="" value="" type="password" required></input></li>
+                				            <li><input name="password" placeholder="" value="" type="password" required></li>
                 				            <p>E-Mail</p>
-                				            <li><input type="email" name="email" placeholder="" required></input></li>
+                				            <li><input type="email" name="email" placeholder="" required></li>
             				            </ul>
             				            <div id="captcha" class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
-            				            <input name="submit" value="Register" type="submit"></input>
+            				            <input name="submit" value="Register" type="submit">
             				        </form>
             				    </div>
             				    <center><p>Already have an account? <a href="/login">Log in!</a></p></center>

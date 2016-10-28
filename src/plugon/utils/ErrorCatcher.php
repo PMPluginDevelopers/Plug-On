@@ -16,8 +16,8 @@ class ErrorCatcher {
      * Scans for new errors and returns true or false if new is found
      * @return bool
      */
-    public function scan() : bool {
-        $errors = $this->source["__plugon_error"] ?? [];
+    public function scan(){
+        $errors = !empty($this->source["__plugon_error"]) && $this->source["__plugon_error"] ? $this->source["__plugon_error"] : [];
         // check for duplicates
         foreach($errors as $i => $error) {
             if(isset($this->errors[$i]) && $this->errors[$i] === $error) unset($errors[$i]);
@@ -31,19 +31,21 @@ class ErrorCatcher {
     /**
      * @return string[]
      */
-    public function getErrors() : array {
+    public function getErrors(){
         return $this->errors;
     }
-    
+
     /**
      * Add new error without any triggers
+     * @param string $error
      */
-    public function addError(string $error) {
+    public function addError($error) {
         $this->errors[] = $error;
     }
-     /**
+
+    /**
      * Add an array of errors
-     * 
+     * @param array $errors
      */
      public function addErrors(array $errors) {
          foreach ($errors as $error){
@@ -53,11 +55,12 @@ class ErrorCatcher {
     /**
      * @return string[]
      */
-    public function getSource() : array {
+    public function getSource(){
         return $this->source;
     }
-     /**
-     * @return void
+
+    /**
+     * @param array $source
      */
     public function setSource(array $source) {
         $this->source = $source;
@@ -65,7 +68,7 @@ class ErrorCatcher {
      /**
      * @return int
      */
-    public function size() : int {
+    public function size(){
         return count($this->errors);
     }
     

@@ -1,18 +1,22 @@
 <?php
 namespace plugon\module\error;
-
+include realpath(dirname(__FILE__)) . '/../Module.php';
 use plugon\module\Module;
-use const plugon\RES_DIR;
-
 class InternalErrorModule extends Module {
-    public function getName() : string {
-        return "err";
+    /**
+     * @return string
+     */
+    public function getName(){
+        return "InternalError";
     }
 
+    /**
+     *
+     */
     public function output() {
         http_response_code(500);
         ?>
-        <!-- Error ref ID: <?= $this->getQuery() ?> -->
+        <!-- Error ref ID: <?php echo $this->getQuery() ?> -->
         <html>
         <head>
             <?php $this->includeCss("style.css") ?>

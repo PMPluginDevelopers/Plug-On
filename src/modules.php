@@ -2,7 +2,7 @@
 namespace plugon;
 
 use plugon\module\archive\ArchiveModule;
-use plugon\module\submit\SubmitModule;
+//use plugon\module\submit\SubmitModule;
 use plugon\module\res\JsModule;
 use plugon\module\res\ResModule;
 use plugon\module\ajax\CsrfModule;
