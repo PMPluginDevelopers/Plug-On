@@ -73,6 +73,9 @@ namespace plugon {
         error_handler(E_ERROR, get_class($e) . ": " . $e->getMessage() . "\n" .
             $e->getTraceAsString(), $e->getFile(), $e->getLine());
     }
+    
+    Plugon::getDb();
+    
     function registerModule(string $class) {
         global $MODULES;
         if(!(class_exists($class) and is_subclass_of($class, Module::class))) {
@@ -113,10 +116,11 @@ namespace plugon {
         }
         if(!isset($log)) $log = new Logger();
         $log->e("Error#$refid Level $errno error at $errfile:$errline: $error");
-        if(!plugon::$plainTextOutput) {
+        if(!Plugon::$plainTextOutput) {
             OutputManager::terminateAll();
             (new InternalErrorModule((string) $refid))->output();
         }
         die;
     }
+
 }

@@ -67,7 +67,7 @@ class SignUpModule extends Module {
             				                ?>
             				            </ul>
             				        </div>
-            				        <form method="POST" id="register-form"  onsubmit="register()" action="#">
+            				        <form method="POST" id="register-form"  onsubmit="return register(this)" action="#">
             				            <ul>
             				                <p>Username</p>
                 				            <li><input name="username" placeholder="" value="" type="text" required></input></li>

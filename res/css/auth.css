@@ -38,8 +38,7 @@
 }
 
 .error-badge {
-    width: 100%;
-    height: 45px;
-    background-color: rgba(235, 195, 195, 0.7);
-    padding: 3px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #E80707;
 }

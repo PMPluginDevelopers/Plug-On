@@ -148,7 +148,7 @@ function fixSize() {
 }
 
 function ajax(path, options) {
-    $.post("${path.relativeRoot}csrf/" + path, {}, function(token) {
+    $.post("/csrf", {}, function(token) {
         if(options === undefined) {
             options = {};
         }
@@ -159,22 +159,9 @@ function ajax(path, options) {
             options.data = {};
         }
         options.data.csrf = token;
-        $.ajax("${path.relativeRoot}" + path, options);
-    });
-}
-
-function login(scopes) {
-    ajax("persistLoc", {
-        data: {
-            path: window.location.toString()
-        },
-        success: function() {
-            var url = "https://github.com/login/oauth/authorize?client_id=${app.clientId}&state=${session.antiForge}&scope=";
-            url += scopes.join(",");
-            //url += "&redirect_uri=";
-            //url += encodeURIComponent(window.location.origin + "${path.relativeRoot}");
-            window.location = url;
-        }
+        $.ajax("/" + path, options).fail(function(response, code){
+            console.log("ajax failed: " + code);
+        });
     });
 }
 

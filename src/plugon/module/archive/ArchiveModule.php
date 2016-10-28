@@ -67,18 +67,9 @@ class ArchiveModule extends Module {
                                         <p>The perfect way to share plugins across the community</p> 
         							</section>
         						</div>
-        						
-       
-        					<div class="row">
-        						<div class="6u 12u(narrower)">
-        
-        							<section class="box special">
-        								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-        								
-        							</section>
-        
-        						</div>
-        						<div class="6u 12u(narrower)">
+        				    </section>
+        				    
+        				</section>
 
         			<!-- CTA -->
         				

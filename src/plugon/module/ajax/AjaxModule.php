@@ -3,7 +3,7 @@ namespace plugon\module\ajax;
 
 use plugon\module\Module;
 use plugon\output\OutputManager;
-use plugon\plugon;
+use plugon\Plugon;
 use plugon\session\SessionUtils;
 use function plugon\redirect;
 
@@ -14,10 +14,11 @@ abstract class AjaxModule extends Module {
         if($this->needLogin() and !$session->isLoggedIn()) {
             redirect(".");
         }
+        
         if(!SessionUtils::getInstance()->validateCsrf($_REQUEST["csrf"] ?? "this will never match")) {
             if($this->fallback()) {
                 http_response_code(403);
-                Poggit::getLog()->w("CSRF failed");
+                Plugon::getLog()->w("CSRF failed");
                 die;
             }
             return;

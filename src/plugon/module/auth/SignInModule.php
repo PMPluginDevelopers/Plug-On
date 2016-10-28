@@ -23,7 +23,6 @@ class SignInModule extends Module {
         		<?php 
         		$this->includePhp("head_meta");
         		$this->includeCss("auth");
-        		$this->includeJs("auth");
         		?>
         	</head>
         	<body class="landing">
@@ -39,14 +38,17 @@ class SignInModule extends Module {
         
             				<div class="box">
             				    <div class="auth-box">
+            				        <div>
+            				            <ul class="error-log"></ul>
+            				        </div>
             				        <h3> Login </h3>
-            				        <form method="POST" action="#" id="login-form" onsubmit="return login()">
+            				        <form method="POST" action="#" id="login-form" onsubmit="return login(this)">
             				            <ul>
             				                <p>Username</p>
                 				            <li><input name="username" placeholder="Username" value="" type="text" required></input></li>
                 				            <p>Password</p>
                 				            <li><input name="password" placeholder="" value="" type="password" required></input></li>
-                				            <li><input name="submit" value="Login" type="submit" onclick="login()"></input></li>
+                				            <li><input name="submit" value="Login" type="submit"></input></li>
             				            </ul>
             				        </form>
             				        <a href="#" id="auth-fp">Forgot password?</a> | <a id="auth-fp" href="/register">Get an account</a>
@@ -62,7 +64,10 @@ class SignInModule extends Module {
         		</div>
         
         		<!-- Scripts -->
-        		<?php $this->includePhp("scripts") ?>
+        		<?php 
+        		$this->includePhp("scripts");
+        		$this->includeJs("auth");
+        		?>
         
         	</body>
         </html>
