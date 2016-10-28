@@ -20,7 +20,8 @@
 
 namespace plugon\utils;
 
-use const plugon\LOG_DIR;
+include realpath(dirname(__FILE__)) . '../module/Module.php';
+use plugon\module\Module;
 
 class Logger {
     const LEVEL_VERBOSE = "verbose";
@@ -33,50 +34,50 @@ class Logger {
     private $streams = [];
 
     public function __construct() {
-        if(!is_dir(LOG_DIR)) {
-            mkdir(LOG_DIR, 0777, true);
+        if(!is_dir(Module::LOG_DIR)) {
+            mkdir(Module::LOG_DIR, 0777, true);
         }
     }
 
     /**
      * @param string $message
      */
-    public function verbose(\string $message) {
+    public function verbose($message) {
         $this->log(self::LEVEL_VERBOSE, $message);
     }
 
     /**
      * @param string $message
      */
-    public function debug(\string $message) {
+    public function debug($message) {
         $this->log(self::LEVEL_DEBUG, $message);
     }
 
     /**
      * @param string $message
      */
-    public function info(\string $message) {
+    public function info($message) {
         $this->log(self::LEVEL_INFO, $message);
     }
 
     /**
      * @param string $message
      */
-    public function warning(\string $message) {
+    public function warning($message) {
         $this->log(self::LEVEL_WARN, $message);
     }
 
     /**
      * @param string $message
      */
-    public function error(\string $message) {
+    public function error($message) {
         $this->log(self::LEVEL_ERROR, $message);
     }
 
     /**
      * @param string $message
      */
-    public function wtf(\string $message) {
+    public function wtf($message) {
         $this->log(self::LEVEL_ASSERT, $message);
     }
 
@@ -84,7 +85,7 @@ class Logger {
      * @param string $level
      * @param string $message
      */
-    private function log(\string $level, \string $message) {
+    private function log( $level, $message) {
         if(!isset($this->streams[$level])) {
             $this->createStream($level);
         }
@@ -94,7 +95,7 @@ class Logger {
     /**
      * @param string $level
      */
-    private function createStream(\string $level) {
+    private function createStream($level) {
         $this->streams[$level] = fopen(LOG_DIR . "$level.log", "at");
     }
 
