@@ -1,9 +1,9 @@
 <!-- Header -->
 <header id="header" class="alt">
-	<h1><a href="index.html">Plug-On</a> Plugin List</h1>
+	<h1><a href="/">Plug-On</a> Plugin List</h1>
 	<nav id="nav">
 		<ul>
-			<li><a href="index.html">Home</a></li>
+			<li><a href="/">Home</a></li>
 			<li>
 				<a href="#" class="icon fa-angle-down">Pocketmine Forums</a>
 				<ul>
@@ -30,8 +30,19 @@
 					</li>
 				</ul>
 			</li>
-			<li><a href="#" class="button">Sign Up</a></li>
-            <li><a href="#" class="button">Log In</a></li>
+			<?php
+			$session = \plugon\session\SessionUtils::getInstance();
+			if($session->isLoggedIn()) {
+				?>
+				<li><a onclick="logout()" class="button">Log out</a></li>
+				<?php
+			} else {
+				?>
+				<li><a href="/register" class="button">Sign Up</a></li>
+	            <li><a href="/login" class="button">Log In</a></li>
+				<?php
+			}
+			?>
 		</ul>
 	</nav>
 </header>

@@ -29,15 +29,32 @@ class ArchiveModule extends Module {
         	<body class="landing">
         		<div id="page-wrapper">
                     
-        			<?php $this->drawHeader(); ?>
+        			<?php 
+        			$this->drawHeader();
+        			$this->includePhp("load_screen");
+        			?>
         
         			<!-- Banner -->
         				<section id="banner">
         					<h2>Plug - On</h2>
         					<p>Crowd - Sourced Plugin List for Pocketmine - MP</p>
         					<ul class="actions">
-        						<li><a href="#" class="button special">Sign Up</a></li>
-        						<li><a href="#" class="button">Log In</a></li>
+        						<?php
+        						if(!$session->isLoggedIn()) {
+        						    ?>
+            						<li><a href="/register" class="button special">Sign Up</a></li>
+            						<li><a href="/login" class="button">Log In</a></li>
+            						<?php
+        						} else {
+        						    ?>
+        						    <p>Welcome back <?php echo $session->getDisplayName(); ?>.</p>
+        						    <li><a href="#" class="button special">Submit Plugin</a></li>
+        						    <li><a href="#" class="button">Plugin List</a></li>
+        						    <li><a href="#" class="button">Profile</a></li>
+        						    <li><a href="#" class="button">Random Plugin</a></li>
+        						    <?php
+        						}
+        						?>
         					</ul>
         				</section>
         
@@ -67,25 +84,10 @@ class ArchiveModule extends Module {
                                         <p>The perfect way to share plugins across the community, Plug - On will help plugin developers share their content with the world! Have Fun!</p> 
         							</section>
         						</div>
-        						
-       
-        					<div class="row">
-        						<div class="6u 12u(narrower)">
-        
-        							<section class="box special">
-        								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-        								
-        							</section>
-        
-        						</div>
-        						<div class="6u 12u(narrower)">
-        
-        							
-        
-        						
-        					
-        
-        				
+        				    </section>
+        				    
+        				</section>
+
         			<!-- CTA -->
         				
 

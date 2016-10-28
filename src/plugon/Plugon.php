@@ -2,14 +2,15 @@
 namespace plugon;
 
 use mysqli;
-use plugon\exception\GitHubAPIException;
-use plugon\log\Log;
+use plugon\utils\Logger;
 use plugon\module\error\InternalErrorPage;
 use plugon\output\OutputManager;
+use plugon\utils\MySQLHelper;
 use RuntimeException;
 use stdClass;
 
 final class Plugon {
+    
     const PLUGON_VERSION = "1.0";
 
     const PROJECT_TYPE_PLUGIN   = 1;
@@ -35,18 +36,18 @@ final class Plugon {
     const CG_WORLD_EDITING_N_MANAGMENT  = 0x12;
     const CG_WORLD_GENERATOR            = 0x13;
 
-    const GH_API_PREFIX = "https://api.github.com/";
-
     public static $PROJECT_TYPE_HUMAN = [
         self::PROJECT_TYPE_PLUGIN => "Plugin",
         self::PROJECT_TYPE_LIBRARY => "Library"
     ];
+    
     public static $BUILD_CLASS_HUMAN = [
         self::BUILD_CLASS_DEV => "Dev",
         self::BUILD_CLASS_BETA => "Beta",
         self::BUILD_CLASS_RELEASE => "Release",
         self::BUILD_CLASS_PR => "PR"
     ];
+    
     public static $BUILD_CLASS_IDEN = [
         self::BUILD_CLASS_DEV => "dev",
         self::BUILD_CLASS_BETA => "beta",
@@ -116,21 +117,25 @@ final class Plugon {
         return $secrets;
     }
 
-    public static function getDb() : mysqli {
+    public static function getDb() : MySQLHelper {
         global $db;
         if(isset($db)) {
+            self::getLog()->i("Returning cached db");
             return $db;
         }
         $data = Plugon::getSecret("mysql");
         try {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            $db = @new mysqli($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ?? 3306);
+            $s = microtime(true);
+            $db = @new MySQLHelper($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ?? 3306);
+            self::getLog()->i("Connected to mysql {$data['host']}:{$data['port']} in " . (microtime(true) - $s) . "s");
         } catch(\Exception $e) {
             Plugon::getLog()->e("mysqli error: " . $e->getMessage());
         }
-        if($db->connect_error) {
+        $mysqli = $db->getResource(); 
+        if($mysqli->connect_error) {
             $rand = mt_rand();
-            Plugon::getLog()->e("Error#$rand mysqli error: $db->connect_error");
+            Plugon::getLog()->e("Error#$rand mysqli error: $mysqli->connect_error");
             OutputManager::$current->terminate();
             (new InternalErrorPage($rand))->output();
             die;
@@ -138,7 +143,7 @@ final class Plugon {
         return $db;
     }
 
-    public static function getLog() : Log {
+    public static function getLog() : Logger {
         global $log;
         return $log;
     }

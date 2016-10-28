@@ -18,6 +18,8 @@ function isLoggedIn() {
     return "${session.isLoggedIn}" == "true";
 }
 
+var loading_screen = false;
+
 var toggleFunc = function() {
     var $this = $(this);
     var name = $this.attr("data-name");
@@ -147,8 +149,8 @@ function fixSize() {
     $("#body").css("top", $("#header").outerHeight());
 }
 
-function ajax(path, options) {
-    $.post("${path.relativeRoot}csrf/" + path, {}, function(token) {
+function ajax(path, options, fail) {
+    $.post("/csrf", {}, function(token) {
         if(options === undefined) {
             options = {};
         }
@@ -158,32 +160,39 @@ function ajax(path, options) {
         if(options.data === undefined) {
             options.data = {};
         }
-        options.data.csrf = token;
-        $.ajax("${path.relativeRoot}" + path, options);
-    });
-}
-
-function login(scopes) {
-    ajax("persistLoc", {
-        data: {
-            path: window.location.toString()
-        },
-        success: function() {
-            var url = "https://github.com/login/oauth/authorize?client_id=${app.clientId}&state=${session.antiForge}&scope=";
-            url += scopes.join(",");
-            //url += "&redirect_uri=";
-            //url += encodeURIComponent(window.location.origin + "${path.relativeRoot}");
-            window.location = url;
+        if(options.method === undefined) {
+            options.method = "POST";
         }
+        options.data.csrf = token;
+        $.ajax("/" + path, options).fail(function(){
+            fail();
+        });
     });
 }
 
 function logout() {
+    show_loading_wall();
     ajax("logout", {
         success: function() {
             window.location.reload(true);
         }
+    }, function(){
+        hide_loading_wall();
+        alert("Unexpected error, please try again later!");
     });
+}
+
+// TODO: Combine into toggle_loading_wall
+function show_loading_wall() {
+    if(loading_screen) return;
+    $(".loading-wall").fadeIn(300);
+    loading_screen = true;
+}
+
+function hide_loading_wall() {
+    if(!loading_screen) return;
+    $(".loading-wall").fadeOut(300);
+    loading_screen = false;
 }
 
 function promptDownloadResource(id, defaultName) {
