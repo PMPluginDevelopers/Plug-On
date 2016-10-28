@@ -10,6 +10,7 @@ abstract class Module {
     const ASSETS_DIR = 'assets/';
     const CSS_DIR = 'res/css/';
     const RES_DIR = 'res/';
+    const LOG_DIR = '';
     const EXTENSION = ".php";
 
     /** @var Module|null */
