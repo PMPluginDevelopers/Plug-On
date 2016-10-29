@@ -1,5 +1,11 @@
 <?php
 namespace plugon\module;
+
+include_once realpath(dirname(__FILE__)) . '/error/AccessDeniedPage.php';
+include_once realpath(dirname(__FILE__)) . '/error/BadRequestPage.php';
+include_once realpath(dirname(__FILE__)) . '/error/NotFoundPage.php';
+include_once realpath(dirname(__FILE__)) . '/../output/OutputManager.php';
+
 use plugon\module\error\AccessDeniedPage;
 use plugon\module\error\BadRequestPage;
 use plugon\module\error\NotFoundPage;
@@ -32,6 +38,13 @@ abstract class Module {
 
     public abstract function getName();
     public abstract function output();
+
+    /**
+     * @return string[]
+     */
+    public function getAllNames(){
+        return [$this->getName()];
+    }
 
     /**
      * @param bool|false $simple
