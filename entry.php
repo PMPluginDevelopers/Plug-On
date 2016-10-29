@@ -2,15 +2,25 @@
 namespace {
     if(!defined('PLUGON_INSTALL_PATH')) define('PLUGON_INSTALL_PATH', realpath(__DIR__) . DIRECTORY_SEPARATOR);
 }
+
 namespace plugon {
-    
+
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/utils/Logger.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/module/archive/ArchiveModule.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/module/archive/ListModule.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/output/OutputManager.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/module/error/InternalErrorModule.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/module/error/NotFoundPage.php';
+    include_once realpath(dirname(__FILE__)) . '/src/plugon/module/Module.php';
+    include_once realpath(dirname(__FILE__)) . '/src/modules.php';
+
     use plugon\utils\Logger;
     use plugon\output\OutputManager;
     use plugon\module\error\InternalErrorModule;
     use plugon\module\error\NotFoundPage;
     use plugon\module\Module;
     use RuntimeException;
-    
+
     if(!defined('plugon\DEFAULT_MODULE')) define('plugon\DEFAULT_MODULE', "archive");
     if(!defined('plugon\INSTALL_PATH')) define('plugon\INSTALL_PATH', PLUGON_INSTALL_PATH);
     if(!defined('plugon\SOURCE_PATH')) define('plugon\SOURCE_PATH', INSTALL_PATH . "src" . DIRECTORY_SEPARATOR);
@@ -24,7 +34,7 @@ namespace plugon {
     if(!defined('plugon\SASS_DIR')) define('plugon\SASS_DIR', "res" . DIRECTORY_SEPARATOR . "sass" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\ASSETS_DIR')) define('plugon\ASSETS_DIR', INSTALL_PATH . "assets" . DIRECTORY_SEPARATOR);
     if(!defined('plugon\LOG_DIR')) define('plugon\LOG_DIR', INSTALL_PATH . "logs" . DIRECTORY_SEPARATOR);
-    
+
     /** @var Module[] */
     $MODULES = [];
 
@@ -46,8 +56,7 @@ namespace plugon {
         Plugon::checkDeps();
         $outputManager = new OutputManager;
         $log = new Logger;
-        include_once realpath(dirname(__FILE__)) . '/src/modules.php';
-        $requestPath = $_GET["__path"] ?? DIRECTORY_SEPARATOR;
+        $requestPath = !empty($_GET["__path"]) ? $_GET["__path"] : DIRECTORY_SEPARATOR;
         $input = file_get_contents("php://input");
         $log->info($_SERVER["REMOTE_ADDR"] . " " . $requestPath);
         $log->verbose($requestPath . " " . json_encode($input, JSON_UNESCAPED_SLASHES));
@@ -72,7 +81,7 @@ namespace plugon {
         error_handler(E_ERROR, get_class($e) . ": " . $e->getMessage() . "\n" .
             $e->getTraceAsString(), $e->getFile(), $e->getLine());
     }
-    
+
     Plugon::getDb();
 
     /**
@@ -85,9 +94,10 @@ namespace plugon {
         }
         /** @var Module $instance */
         $instance = new $class("");
-        $MODULES[$instance->getName()] = $class;
+        foreach($instance->getAllNames() as $name) {
+            $MODULES[$name] = $class;
+        }
     }
-
     /**
      * @return string
      */
@@ -95,7 +105,6 @@ namespace plugon {
         global $input;
         return $input;
     }
-
     /**
      * @return string
      */
@@ -114,6 +123,7 @@ namespace plugon {
         Plugon::showStatus();
         exit();
     }
+
     /**
      * @param $err_no
      * @param $error
@@ -123,16 +133,16 @@ namespace plugon {
     function error_handler($err_no, $error, $err_file, $err_line) {
         global $log;
         http_response_code(500);
-        $re_fid = mt_rand();
+        $ref_id = mt_rand();
         if(Plugon::$plainTextOutput) {
             OutputManager::$current->outputTree();
-            echo "Error#$re_fid Level $err_no error at $err_file:$err_line: $error\n";
+            echo "Error#$ref_id Level $err_no error at $err_file:$err_line: $error\n";
         }
         if(!isset($log)) $log = new Logger();
-        $log->error("Error#$re_fid Level $err_no error at $err_file:$err_line: $error");
+        $log->error("Error#$ref_id Level $err_no error at $err_file:$err_line: $error");
         if(!Plugon::$plainTextOutput) {
             OutputManager::terminateAll();
-            (new InternalErrorModule((string) $re_fid))->output();
+            (new InternalErrorModule((string) $ref_id))->output();
         }
         die;
     }
