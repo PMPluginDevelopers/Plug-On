@@ -151,7 +151,7 @@ namespace plugon {
             try {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 $s = microtime(true);
-                $db = @new MySQLHelper($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ?? 3306);
+                $db = @new MySQLHelper($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ? $data["port"] : 3306);
                 self::getLog()->info("Connected to mysql {$data['host']}:{$data['port']} in " . (microtime(true) - $s) . "s");
             } catch (\Exception $e) {
                 Plugon::getLog()->info("mysqli error: " . $e->getMessage());
@@ -190,21 +190,24 @@ namespace plugon {
         /**
          * @param string $query
          * @param string $types
-         * @param ...$args
          * @return array|MySQLHelper
          */
-        public static function queryAndFetch($query, $types = "", ...$args)
+        public static function queryAndFetch($query, $types = "")
         {
             self::$mysqlCounter++;
             $start = microtime(true);
             $db = PlugOn::getDb();
+            $args = func_get_args();
+            for($i = 0; $i = 2; ++$i){
+                array_shift($args);
+            }
             if ($types !== "") {
                 $stmt = $db->prepare($query);
                 if ($stmt === false) {
                     throw new RuntimeException("Failed to prepare statement: " . $db->error);
                 }
                 Plugon::getLog()->verbose("Executing MySQL query $query with args $types: " . json_encode($args));
-                $stmt->bind_param($types, ...$args);
+                $stmt->bind_param($types, $args);
                 if (!$stmt->execute()) {
                     throw new RuntimeException("Failed to execute query: " . $db->error);
                 }
@@ -234,12 +237,16 @@ namespace plugon {
          * @param string $url
          * @param string $postContents
          * @param string $method
-         * @param ...$extraHeaders
          * @return mixed|string
          */
-        public static function curl($url, $postContents, $method, ...$extraHeaders)
+        public static function curl($url, $postContents, $method)
         {
             self::$curlCounter++;
+            $extraHeaders = func_get_args();
+            for($i = 0; $i = 3; ++$i){
+                array_shift($extraHeaders);
+                echo $i;
+            }
             $headers = ["User-Agent: Plugon/" . Plugon::PLUGON_VERSION];
             foreach ($extraHeaders as $header) {
                 if (strpos($header, "Accept: ") === 0) {
@@ -277,12 +284,16 @@ namespace plugon {
         /**
          * @param string $url
          * @param $postFields
-         * @param ...$extraHeaders
          * @return mixed|string
          */
-        public static function curlPost($url, $postFields, ...$extraHeaders)
+        public static function curlPost($url, $postFields)
         {
             self::$curlCounter++;
+            $extraHeaders = func_get_args();
+            for($i = 0; $i = 3; ++$i){
+                array_shift($extraHeaders);
+                echo $i;
+            }
             $headers = ["User-Agent: Plugon/" . Plugon::PLUGON_VERSION];
             foreach ($extraHeaders as $header) {
                 if (strpos($header, "Accept: ") === 0) {
@@ -319,12 +330,13 @@ namespace plugon {
 
         /**
          * @param string $url
-         * @param ...$extraHeaders
          * @return mixed|string
          */
-        public static function curlGet($url, ...$extraHeaders)
+        public static function curlGet($url)
         {
             self::$curlCounter++;
+            $extraHeaders = func_get_args();
+            array_shift($extraHeaders);
             $headers = ["User-Agent: Plugon/" . Plugon::PLUGON_VERSION];
             foreach ($extraHeaders as $header) {
                 $headers[] = $header;

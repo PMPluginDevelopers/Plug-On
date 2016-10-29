@@ -1,7 +1,8 @@
 <?php
 namespace plugon\module\res;
 
-include realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/ResModule.php';
 use plugon\module\Module;
 
 class JsModule extends ResModule {

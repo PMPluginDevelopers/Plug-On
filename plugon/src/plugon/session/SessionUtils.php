@@ -1,5 +1,7 @@
 <?php
 namespace plugon\session;
+
+include_once realpath(dirname(__FILE__)) . '/../Plugon.php';
 use plugon\Plugon;
 
 class SessionUtils {

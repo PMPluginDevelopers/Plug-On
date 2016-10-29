@@ -1,6 +1,6 @@
 <?php
 namespace plugon\module\error;
-include realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
 use plugon\module\Module;
 class InternalErrorModule extends Module {
     /**

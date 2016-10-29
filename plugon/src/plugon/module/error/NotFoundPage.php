@@ -1,8 +1,8 @@
 <?php
 namespace plugon\module\error;
 
-include realpath(dirname(__FILE__)) . '/../../Plugon.php';
-include realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../../Plugon.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
 
 use plugon\module\Module;
 use plugon\Plugon;
@@ -31,7 +31,7 @@ class NotFoundPage extends Module {
                       class="verbose"><?php htmlspecialchars(Plugon::getRootPath()) ?></span><?php $this->getQuery() ?>
               </code>,
               does not exist or is not visible to you.</p>
-          <p>Referrer: <?= $_SERVER["HTTP_REFERER"] ?? "<em>nil</em>" ?></p>
+          <p>Referrer: <?php echo !empty($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "<em>nil</em>"; ?></p>
       </div>
       </body>
       </html>

@@ -1,22 +1,22 @@
 <?php
 namespace plugon\module\ajax;
 
-include realpath(dirname(__FILE__)) . '/../Module.php';
-include realpath(dirname(__FILE__)) . '/../../output/OutputManager.php';
-include realpath(dirname(__FILE__)) . '/../../Plugon.php';
-include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../../output/OutputManager.php';
+include_once realpath(dirname(__FILE__)) . '/../../Plugon.php';
+include_once realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
 
 use plugon\module\Module;
 use plugon\output\OutputManager;
 use plugon\Plugon;
 use plugon\session\SessionUtils;
-use function plugon\redirect;
+
 abstract class AjaxModule extends Module {
 
     public final function output() {
         $session = SessionUtils::getInstance();
         if($this->needLogin() and !$session->isLoggedIn()) {
-            redirect(".");
+            \plugon\redirect(".");
         }
         
         if(!SessionUtils::getInstance()->validateCsrf($_REQUEST["csrf"] ? $_REQUEST["csrf"] : "this will never match")) {
@@ -44,6 +44,9 @@ abstract class AjaxModule extends Module {
         return false;
     }
 
+    /**
+     * @param string $message
+     */
     protected function errorBadRequest($message) {
         OutputManager::terminateAll();
         http_response_code(400);

@@ -1,8 +1,8 @@
 <?php
 namespace plugon\module\ajax;
 
-include realpath(dirname(__FILE__)) . '/../Module.php';
-include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
 
 use plugon\module\Module;
 use plugon\session\SessionUtils;

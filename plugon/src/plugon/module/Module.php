@@ -1,5 +1,11 @@
 <?php
 namespace plugon\module;
+
+include realpath(dirname(__FILE__)) . '/error/AccessDeniedPage.php';
+include realpath(dirname(__FILE__)) . '/error/BadRequestPage.php';
+include realpath(dirname(__FILE__)) . '/error/NotFoundPage.php';
+include realpath(dirname(__FILE__)) . '/../output/OutputManager.php';
+
 use plugon\module\error\AccessDeniedPage;
 use plugon\module\error\BadRequestPage;
 use plugon\module\error\NotFoundPage;
@@ -10,7 +16,7 @@ abstract class Module {
     const ASSETS_DIR = 'assets/';
     const CSS_DIR = 'res/css/';
     const RES_DIR = 'res/';
-    const LOG_DIR = '';
+    const LOG_DIR = 'logs/';
     const EXTENSION = ".php";
 
     /** @var Module|null */
@@ -19,7 +25,7 @@ abstract class Module {
     /** @var string */
     private $query;
 
-    public function __construct($query) {
+    public function __construct($query){
         $this->query = $query;
     }
 
@@ -32,6 +38,13 @@ abstract class Module {
 
     public abstract function getName();
     public abstract function output();
+
+    /**
+     * @return string[]
+     */
+    public function getAllNames(){
+        return [$this->getName()];
+    }
 
     /**
      * @param bool|false $simple

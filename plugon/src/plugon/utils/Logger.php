@@ -20,7 +20,7 @@
 
 namespace plugon\utils;
 
-include realpath(dirname(__FILE__)) . '../module/Module.php';
+include realpath(dirname(__FILE__)) . '/../module/Module.php';
 use plugon\module\Module;
 
 class Logger {
@@ -31,6 +31,9 @@ class Logger {
     const LEVEL_ERROR = "error";
     const LEVEL_ASSERT = "assert";
 
+    /**
+     * @var array
+     */
     private $streams = [];
 
     public function __construct() {
@@ -96,7 +99,7 @@ class Logger {
      * @param string $level
      */
     private function createStream($level) {
-        $this->streams[$level] = fopen(LOG_DIR . "$level.log", "at");
+        $this->streams[$level] = fopen(Module::LOG_DIR . "$level.log", "at");
     }
 
     public function __destruct() {

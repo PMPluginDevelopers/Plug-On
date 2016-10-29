@@ -1,6 +1,8 @@
 <?php
 namespace plugon\module\ajax;
 
+include_once realpath(dirname(__FILE__)) . '/AjaxModule.php';
+
 class LogoutAjax extends AjaxModule {
 
     protected function impl() {

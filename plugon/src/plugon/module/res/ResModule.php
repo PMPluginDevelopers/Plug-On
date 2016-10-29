@@ -1,9 +1,9 @@
 <?php
 namespace plugon\module\res;
 
-include realpath(dirname(__FILE__)) . '/../Module.php';
-include realpath(dirname(__FILE__)) . '/../../Plugon.php';
-include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../../Plugon.php';
+include_once realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
 
 use plugon\module\Module;
 use plugon\Plugon;

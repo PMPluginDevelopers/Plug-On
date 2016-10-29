@@ -1,6 +1,7 @@
 <?php
 namespace plugon\output;
 
+include_once realpath(dirname(__FILE__)) . '/../Plugon.php';
 use plugon\Plugon;
 
 class OutputManager {
@@ -53,7 +54,7 @@ class OutputManager {
         return $this->child;
     }
 
-    public function handle(string $buffer) {
+    public function handle($buffer) {
         if($this->child !== null) {
             $this->child->handle($buffer);
             return;

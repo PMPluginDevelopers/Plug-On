@@ -1,9 +1,10 @@
 <?php
 namespace plugon\module\auth;
 
-include realpath(dirname(__FILE__)) . '/../Module.php';
-include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
-include realpath(dirname(__FILE__)) . '/../../utils/ErrorCatcher.php';
+include_once realpath(dirname(__FILE__)) . '/../../../../entry.php';
+include_once realpath(dirname(__FILE__)) . '/../Module.php';
+include_once realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
+include_once realpath(dirname(__FILE__)) . '/../../utils/ErrorCatcher.php';
 
 use plugon\module\Module;
 use plugon\session\SessionUtils;
