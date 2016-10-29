@@ -198,7 +198,7 @@ namespace plugon {
             $start = microtime(true);
             $db = PlugOn::getDb();
             $args = func_get_args();
-            for($i = 0; $i = 2; ++$i){
+            for($i = 0; $i <= 2; ++$i){
                 array_shift($args);
             }
             if ($types !== "") {
