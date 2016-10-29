@@ -50,8 +50,8 @@ namespace plugon {
         include_once SOURCE_PATH . "modules.php"; // Load default modules
         $requestPath = $_GET["__path"] ?? DIRECTORY_SEPARATOR;
         $input = file_get_contents("php://input");
-        $log->i($_SERVER["REMOTE_ADDR"] . " " . $requestPath);
-        $log->v($requestPath . " " . json_encode($input, JSON_UNESCAPED_SLASHES));
+        $log->info($_SERVER["REMOTE_ADDR"] . " " . $requestPath);
+        $log->verbose($requestPath . " " . json_encode($input, JSON_UNESCAPED_SLASHES));
         $startEvalTime = microtime(true);
         $paths = array_filter(explode(DIRECTORY_SEPARATOR, $requestPath, 2));
         if(count($paths) === 0) $paths[] = DEFAULT_MODULE;
@@ -66,7 +66,7 @@ namespace plugon {
         Module::$currentPage = $page;
         $page->output();
         $endEvalTime = microtime(true);
-        $log->v("Safely completed: " . ((int) (($endEvalTime - $startEvalTime) * 1000)) . "ms");
+        $log->verbose("Safely completed: " . ((int) (($endEvalTime - $startEvalTime) * 1000)) . "ms");
         Plugon::showStatus();
         $outputManager->output();
     } catch(\Throwable $e) {

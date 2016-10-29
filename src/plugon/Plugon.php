@@ -151,7 +151,7 @@ namespace plugon {
             try {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 $s = microtime(true);
-                $db = @new MySQLHelper($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ?? 3306);
+                $db = @new MySQLHelper($data["host"], $data["user"], $data["password"], $data["schema"], $data["port"] ? $data["port"] : 3306);
                 self::getLog()->info("Connected to mysql {$data['host']}:{$data['port']} in " . (microtime(true) - $s) . "s");
             } catch (\Exception $e) {
                 Plugon::getLog()->info("mysqli error: " . $e->getMessage());

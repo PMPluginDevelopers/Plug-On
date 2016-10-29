@@ -44,6 +44,9 @@ abstract class AjaxModule extends Module {
         return false;
     }
 
+    /**
+     * @param string $message
+     */
     protected function errorBadRequest($message) {
         OutputManager::terminateAll();
         http_response_code(400);
