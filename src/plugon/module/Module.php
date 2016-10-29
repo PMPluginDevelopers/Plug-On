@@ -19,7 +19,7 @@ abstract class Module {
     /** @var string */
     private $query;
 
-    public function __construct($query) {
+    public function __construct($query){
         $this->query = $query;
     }
 

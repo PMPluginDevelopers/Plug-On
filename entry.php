@@ -2,7 +2,6 @@
 namespace {
     if(!defined('PLUGON_INSTALL_PATH')) define('PLUGON_INSTALL_PATH', realpath(__DIR__) . DIRECTORY_SEPARATOR);
 }
-
 namespace plugon {
     
     use plugon\utils\Logger;
@@ -47,7 +46,7 @@ namespace plugon {
         Plugon::checkDeps();
         $outputManager = new OutputManager;
         $log = new Logger;
-        include_once SOURCE_PATH . "modules.php"; // Load default modules
+        include_once realpath(dirname(__FILE__)) . '/src/modules.php';
         $requestPath = $_GET["__path"] ?? DIRECTORY_SEPARATOR;
         $input = file_get_contents("php://input");
         $log->info($_SERVER["REMOTE_ADDR"] . " " . $requestPath);
@@ -75,23 +74,32 @@ namespace plugon {
     }
     
     Plugon::getDb();
-    
-    function registerModule(string $class) {
+
+    /**
+     * @param string $class
+     */
+    function registerModule($class) {
         global $MODULES;
         if(!(class_exists($class) and is_subclass_of($class, Module::class))) {
             throw new RuntimeException("Want Class<? extends Module>, got Class<$class>");
         }
         /** @var Module $instance */
         $instance = new $class("");
-        foreach($instance->getAllNames() as $name) {
-            $MODULES[$name] = $class;
-        }
+        $MODULES[$instance->getName()] = $class;
     }
-    function getInput() : string {
+
+    /**
+     * @return string
+     */
+    function getInput(){
         global $input;
         return $input;
     }
-    function getRequestPath() : string {
+
+    /**
+     * @return string
+     */
+    function getRequestPath(){
         global $requestPath;
         return $requestPath;
     }
@@ -101,24 +109,30 @@ namespace plugon {
      * @param string $target   default homepage
      * @param bool   $absolute default true
      */
-    function redirect(string $target = "", bool $absolute = false) {
+    function redirect($target = "", $absolute = false) {
         header("Location: " . ((!$absolute and $target !== "") ? Plugon::getRootPath() : "") . $target);
         Plugon::showStatus();
-        //die;
+        exit();
     }
-    function error_handler(int $errno, string $error, string $errfile, int $errline) {
+    /**
+     * @param $err_no
+     * @param $error
+     * @param $err_file
+     * @param $err_line
+     */
+    function error_handler($err_no, $error, $err_file, $err_line) {
         global $log;
         http_response_code(500);
-        $refid = mt_rand();
+        $re_fid = mt_rand();
         if(Plugon::$plainTextOutput) {
             OutputManager::$current->outputTree();
-            echo "Error#$refid Level $errno error at $errfile:$errline: $error\n";
+            echo "Error#$re_fid Level $err_no error at $err_file:$err_line: $error\n";
         }
         if(!isset($log)) $log = new Logger();
-        $log->e("Error#$refid Level $errno error at $errfile:$errline: $error");
+        $log->error("Error#$re_fid Level $err_no error at $err_file:$err_line: $error");
         if(!Plugon::$plainTextOutput) {
             OutputManager::terminateAll();
-            (new InternalErrorModule((string) $refid))->output();
+            (new InternalErrorModule((string) $re_fid))->output();
         }
         die;
     }

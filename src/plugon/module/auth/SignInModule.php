@@ -1,6 +1,7 @@
 <?php
 namespace plugon\module\auth;
 
+include realpath(dirname(__FILE__)) . '/../../../../entry.php';
 include realpath(dirname(__FILE__)) . '/../Module.php';
 include realpath(dirname(__FILE__)) . '/../../session/SessionUtils.php';
 
