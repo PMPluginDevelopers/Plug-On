@@ -1,7 +1,7 @@
 
 
 
-# We merged with Poggit! Go to the Poggit repo to view our latest commits and issues!
+# We merged with [Poggit](https://github.com/poggit/poggit)! Go to the Poggit repo to view our latest commits and issues!
 
 
 
