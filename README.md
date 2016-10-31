@@ -1,5 +1,10 @@
 
 
+
+# We merged with Poggit! Go to the Poggit repo to view our latest commits and issues!
+
+
+
 <img src="https://github.com/PMPluginDevelopers/Plug-On/blob/master/images/screenshot_2016-10-26_at_10.23.22_am.png?raw=true" alt="A New Place to Post Plugins"/>
 
 Development for creating a website for sharing PocketMine-MP plugins.
